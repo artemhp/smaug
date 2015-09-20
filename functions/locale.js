@@ -1,0 +1,20 @@
+var locale = {
+    army: ["divDrak", "divRyc", "divDam"],
+    move: 'Идти',
+    door: 'Дверь',
+    player: '[title="Игрок"]',
+    attack: '[title="Напасть на жителя лабиринта"]',
+    wearLink: 'http://fantasyland.ru/cgi/set_wear.php?id=',
+    pick: '[title=Подобрать]',
+    unlock: '[title=Отпереть]',
+    goldSelector: '#pickupID0',
+    noCombatFrame: 'no_combat',
+    coordinatesText: 'title',
+    mainFrame: 'loc',
+    showInfoFrame: 'show_info',
+    armyFrame: 'your_army',
+    healthLine: '#hpline',
+    combatFrame: 'combat_panel',
+    healthTab: '[title="Информация о персонаже"]',
+    coordinates: {west: "d3", east: "d5", south: "d7", north: "d1"}
+};

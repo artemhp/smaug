@@ -1,0 +1,92 @@
+<div class="actionBar">
+    <button id="buttonStop">Stop</button>
+    <button id="buttonGo">Start</button>
+    <button id="reset">Reset</button>
+</div>
+
+
+<table class="statisticsTbl">
+    <tr>
+        <td class="title">Creatures Found</td>
+        <td id="statisticsMobsAttacks"></td>
+    </tr>
+    <tr>
+        <td class="title">Gold Found</td>
+        <td id="statisticsMoney"></td>
+    </tr>
+    <tr>
+        <td class="title">Steps by Smaug</td>
+        <td id="statisticsSteps"></td>
+    </tr>
+    <tr>
+        <td class="title">In memory</td>
+        <td id="statisticsMemory"></td>
+    </tr>
+</table>
+
+<table class="wearRoom">
+    <tr>
+        <td class="wearRoomTitle">Combat Clothes</td>
+        <td>
+            <input type="text" name="combatClothes" id="combatClothes"/>
+        </td>
+    </tr>
+    <tr>
+        <td class="wearRoomTitle">Travel Clothes</td>
+        <td>
+            <input type="text" name="travelClothes" id="travelClothes"/>
+        </td>
+    </tr>
+    <tr>
+        <td class="wearRoomTitle"></td>
+        <td>
+            <input type="button" value="Update" name="updateWear" id="updateWear"/>
+        </td>
+    </tr>
+</table>
+
+<div class="links">
+    <a href="http://fantasyland.ru/cgi/combats_info.php?myself" target="_blank">
+        Show Previous Combats
+    </a>
+</div>
+
+<style>
+
+    .wearRoom {
+        margin-top: 10px;
+    }
+
+    .wearRoom input {
+        width: 100%;
+        font-size: 12px;
+    }
+
+    .actionBar {
+        margin-bottom: 5px;
+    }
+
+    body {
+        width: 165px;
+    }
+
+    #reset {
+        float: right;
+    }
+
+    .statisticsTbl,
+    .wearRoom {
+        font-size: 12px;
+        width: 100%;
+    }
+
+    .statisticsTbl .title,
+    .wearRoomTitle{
+        font-weight: bold;
+        white-space: nowrap;
+    }
+</style>
+
+<script type="text/javascript" src="popup/variables.js"></script>
+<script type="text/javascript" src="popup/methods.js"></script>
+<script type="text/javascript" src="popup.js"></script>
