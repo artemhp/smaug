@@ -8,6 +8,54 @@ var arrowsArray = [
     locale.coordinates.west
 ];
 
+smaugGet(null, function(a){
+    console.log(a);
+});
+
+//chrome.storage.local.remove("statistics");
+smaugGet('statistics', function(a){
+    if (!a.statistics){
+        var statisticsObj = {
+            'storedCoordinates': [],
+            'itemsFound': {
+            },
+            'steps': 0,
+            'daily': {
+            }
+        };
+
+        //statisticsObj.itemsFound[moveSearchTreasure.type] = moveSearchTreasure.count;
+        //statisticsObj.daily[smaugDateFormat()] = {};
+
+        smaugSet({
+            'statistics': statisticsObj
+        }, function(){
+            console.log("Statistics has been created");
+        });
+    }
+});
+
+smaugGet('clothes', function(a){
+    if (!a.clothes){
+
+        var clothesObj = {
+            'combat': 777596,
+            'travel': 777596
+        };
+
+        smaugSet({
+            'clothes': clothesObj
+        }, function(){
+            console.log("Clothes has been created");
+        });
+
+    }
+});
+
+//smaugSet({
+//    'clothes.combat': 777596
+//}, function(){});
+
 function actionOnTravelFrame(){
     if (speed() > 30) {
         //console.log("Speed " + speed() + " is enough!");
@@ -16,7 +64,7 @@ function actionOnTravelFrame(){
         var currentCoordinate = getCoordinates();
         //console.log("Current Coordinate:" + currentCoordinate);
 
-        // Get Available Arows
+        // Get Available Arrows
         var availableArrows = getAvailableArrows(analyseArrow);
         //console.log("Available Arrows:" + availableArrows);
 
@@ -27,9 +75,9 @@ function actionOnTravelFrame(){
         // Save Coordinates
         smaugGet('localCoordinate', function(a){
             if (a.localCoordinate !== currentCoordinate.local) {
-                // It is definetelty not after refresh
+                // It is definitely not after refresh
                 saveCoordinates(currentCoordinate, function(){
-                    move(chosenArrow)
+                    move(chosenArrow);
                 });
             } else {
                 move(chosenArrow)
@@ -47,11 +95,7 @@ function actionOnTravelFrame(){
             //console.log("getTravelFrame");
             smaugGet('coordinates', function(a){
 
-                if (Object.keys(a).length === 0) {
-                    storedCoordinates = [];
-                } else {
-                    storedCoordinates = a.coordinates;
-                }
+                storedCoordinates = a.coordinates;
                 storedCoordinatesArray = storedCoordinates.map(function(el){
                     return el.local;
                 });
@@ -65,13 +109,16 @@ function actionOnTravelFrame(){
 
         } else if (getArmyFrame()) {
             var randArmy = Math.floor(Math.random() * 3);
-            var unit = getUnitNode(getArmyFrame(), army[randArmy]);
+            var unit = getUnitNode(getArmyFrame(), locale.army[randArmy]);
             //console.log(unit);
             unit.click();
 
-            if (getExitLink()) {
+            console.log(getExitLink(getArmyFrame()));
+
+            if (getExitLink(getArmyFrame())) {
                 //console.log("Combat has been finished");
-                getExitLink().click();
+                //getExitLink(getArmyFrame()).click();
+                console.log(getExitLink(getArmyFrame()));
             }
         }
         loop();
