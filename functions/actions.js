@@ -253,26 +253,24 @@ function move(chosenArrow) {
                         var currentItemCount = moveSearchTreasure.count;
                         var currentDate = smaugDateFormat();
                         var currentDailyType;
-                        var currentDailyCount;
+                        var currentDailyCount = 0;
 
                         // Daily Statistics
                         if (a.statistics.daily[currentDate]) {
                             // Case when current date in statistics exist
                             currentDailyType = a.statistics.daily[currentDate][currentItemType];
                             if (currentDailyType) {
-                                currentDailyCount = parseInt(currentDailyType.count) + parseInt(currentItemCount);
+                                currentDailyCount = parseInt(currentDailyType) + parseInt(currentItemCount);
                             } else {
                                 a.statistics.daily[currentDate][currentItemType] = {};
                                 currentDailyCount = parseInt(currentItemCount);
                             }
-
                             a.statistics.daily[currentDate][currentItemType] = currentDailyCount;
-                            debugger;
+
                         } else {
                             // Case when current date in statistics doesn't exist
                             a.statistics.daily[currentDate] = {};
                             a.statistics.daily[currentDate][currentItemType] = parseInt(currentItemCount);
-                            debugger;
                         }
 
                         // General Statistics
@@ -283,10 +281,13 @@ function move(chosenArrow) {
                             a.statistics.itemsFound[currentItemType] = parseInt(moveSearchTreasure.count)
                         }
 
+                        //console.log(a.statistics);
+
+
                         smaugSet({
                             'statistics': a.statistics
                         }, function () {
-                            //moveSearchTreasure.item.click();
+                            moveSearchTreasure.item.click();
                         });
 
                     });
@@ -298,8 +299,6 @@ function move(chosenArrow) {
             if (moveSearchMob) {
                 return false;
             }
-
-
 
             chosenArrow.click();
             return true;

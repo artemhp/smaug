@@ -86,44 +86,57 @@ function actionOnTravelFrame(){
 
     }
 }
+setTimeout(function () {
+    (function loop() {
+        var rand = Math.random() * (2000 - 1000) + 1000;
+        setTimeout(function() {
+            if (getTravelFrame()) {
+                smaugGet('action', function(act) {
+                    if (act.action == "go") {
+                        smaugGet('coordinates', function(a){
 
-(function loop() {
-    var rand = Math.random() * (5000 - 2000) + 2000;
-    setTimeout(function() {
+                            storedCoordinates = a.coordinates;
 
-        if (getTravelFrame()) {
-            //console.log("getTravelFrame");
-            smaugGet('coordinates', function(a){
+                            if (storedCoordinates.length > 600) {
+                                storedCoordinates = [];
+                                chrome.storage.local.remove("coordinates");
+                            }
 
-                storedCoordinates = a.coordinates;
-                storedCoordinatesArray = storedCoordinates.map(function(el){
-                    return el.local;
+                            storedCoordinatesArray = storedCoordinates.map(function(el){
+                                return el.local;
+                            });
+
+                            ////////// Action
+                            actionOnTravelFrame();
+                        });
+                    }
                 });
-
-                //console.log("Stored Coordinates Array");
-                //console.log(storedCoordinatesArray.length);
-
-                ////////// Action
-                actionOnTravelFrame();
-            });
-
-        } else if (getArmyFrame()) {
-            var randArmy = Math.floor(Math.random() * 3);
-            var unit = getUnitNode(getArmyFrame(), locale.army[randArmy]);
-            //console.log(unit);
-            unit.click();
-
-            console.log(getExitLink(getArmyFrame()));
-
-            if (getExitLink(getArmyFrame())) {
-                //console.log("Combat has been finished");
-                //getExitLink(getArmyFrame()).click();
-                console.log(getExitLink(getArmyFrame()));
             }
-        }
-        loop();
-    }, rand);
-}());
+            loop();
+        }, rand);
+    }());
+
+    (function loop() {
+        var rand = Math.random() * (15000 - 10000) + 10000;
+        setTimeout(function() {
+            if (getArmyFrame()) {
+                var randArmy = Math.floor(Math.random() * 3);
+                var unit = getUnitNode(getArmyFrame(), locale.army[randArmy]);
+
+                unit.click(function(){});
+
+                getArmyFrame().location.reload();
+                getCombatField().location.reload();
+
+                if (getExitLink(getCombatField())) {
+                    getExitLink(getCombatField()).click();
+                }
+            }
+            loop();
+        }, rand);
+    }());
+
+}, 5000);
 
 //setTimeout(function () {
 //    //var maze = new Maze();

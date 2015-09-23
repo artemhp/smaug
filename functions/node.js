@@ -44,13 +44,17 @@ var getArmyFrame = function() {
     return window.frames[locale.mainFrame].frames[locale.armyFrame];
 };
 
+var getCombatField = function() {
+    return window.frames[locale.mainFrame].frames[locale.combatFrame];
+};
+
 var getUnitNode = function(armyFrame, armyType){
     var armySelector = "#" + armyType + " .ArmyShow .cp[onclick][valign=middle]";
     var chooseArmy = armyFrame.document.querySelectorAll(armySelector);
     return  chooseArmy[chooseArmy.length - 1];
 };
 
-var getExitLink = function(armyFrame){
-    console.log(armyFrame.document.querySelector("#la a"));
-    return armyFrame.document.querySelector("#la a");
+var getExitLink = function(combatFrame){
+    var laa = combatFrame.document.querySelector("#la a");
+    return laa;
 };

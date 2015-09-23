@@ -8,17 +8,21 @@ var current = {
 
 // When Click Stop Button
 buttonStop.addEventListener("click", function () {
-    sendMessage({
-        action: "stop"
+    smaugSet({
+        'action': "stop"
+    }, function () {
+        console.log("Now Smaug is relaxing");
     });
 }, false);
 
 buttonUpdate.addEventListener("click", function () {
     smaugSet({
-        'combatClothes': inputCombatClothes.value,
-        'travelClothes': inputTravelClothes.value
-    }, function(){
-        console.log("Clothes has beed Changed!");
+        'clothes': {
+            'combat': inputCombatClothes.value,
+            'travel': inputTravelClothes.value
+        }
+    }, function () {
+        console.log("Clothes has been Changed!");
     });
 
     smaugSendRequest(wearLink + inputTravelClothes.value);
@@ -26,16 +30,28 @@ buttonUpdate.addEventListener("click", function () {
 
 // When Click Reset Button
 buttonReset.addEventListener("click", function () {
-    sendMessage({action: "reset"});
+    chrome.storage.local.remove("statistics");
 }, false);
 
 // When Click Reset Button
 buttonStart.addEventListener("click", function () {
-    sendMessage({action: "go"});
+    smaugSet({
+        'action': "go"
+    }, function () {
+        console.log("Now Smaug is ready to Kill");
+    });
 }, false);
 
-smaugGet(null, function(a){
-    console.log(a)
-    document.getElementById("combatClothes").value = a.combatClothes;
-    document.getElementById("travelClothes").value = a.travelClothes;
+smaugGet("clothes", function (a) {
+    document.getElementById("combatClothes").value = a.clothes.combat;
+    document.getElementById("travelClothes").value = a.clothes.travel;
+});
+
+smaugGet("action", function (a) {
+    console.log(a);
+    if (a.action == "go") {
+        buttonStart.disabled = true;
+    } else {
+        buttonStop.disabled = true;
+    }
 });
