@@ -6,3 +6,9 @@ function countInArray(array, what) {
     }
     return count;
 }
+
+function smaugDateFormat (){
+    var getDate = new Date();
+    var formatDate = getDate.getFullYear() + "-" + getDate.getMonth() + "-" + getDate.getDate();
+    return formatDate;
+}

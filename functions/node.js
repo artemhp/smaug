@@ -51,5 +51,6 @@ var getUnitNode = function(armyFrame, armyType){
 };
 
 var getExitLink = function(armyFrame){
+    console.log(armyFrame.document.querySelector("#la a"));
     return armyFrame.document.querySelector("#la a");
 };
