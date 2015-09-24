@@ -46,6 +46,7 @@ buttonStart.addEventListener("click", function () {
 smaugGet("clothes", function (a) {
     document.getElementById("combatClothes").value = a.clothes.combat;
     document.getElementById("travelClothes").value = a.clothes.travel;
+    document.getElementById("beverage").value = a.clothes.beverage;
 });
 
 smaugGet("action", function (a) {

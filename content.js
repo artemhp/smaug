@@ -91,6 +91,9 @@ setTimeout(function () {
         var rand = Math.random() * (2000 - 1000) + 1000;
         setTimeout(function() {
             if (getTravelFrame()) {
+
+                chrome.runtime.sendMessage({action: "travel"});
+
                 smaugGet('action', function(act) {
                     if (act.action == "go") {
                         smaugGet('coordinates', function(a){
@@ -124,6 +127,9 @@ setTimeout(function () {
         var rand = Math.random() * (15000 - 10000) + 10000;
         setTimeout(function() {
             if (getArmyFrame()) {
+
+                chrome.runtime.sendMessage({action: "combat"});
+
                 var randArmy = Math.floor(Math.random() * 3);
                 var unit = getUnitNode(getArmyFrame(), locale.army[randArmy]);
 

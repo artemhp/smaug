@@ -46,3 +46,12 @@ chrome.alarms.onAlarm.addListener(function (alarm) {
     }
 
 });
+
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+        if (request.action === "combat") {
+            chrome.browserAction.setIcon({path: 'icon-combat.png'});
+        } else if (request.action === "travel") {
+            chrome.browserAction.setIcon({path: 'icon.png'});
+        }
+    });
