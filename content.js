@@ -95,7 +95,11 @@ setTimeout(function () {
                     if (act.action == "go") {
                         smaugGet('coordinates', function(a){
 
-                            storedCoordinates = a.coordinates;
+                            if (!a.coordinates) {
+                                storedCoordinates = [];
+                            } else {
+                                storedCoordinates = a.coordinates;
+                            }
 
                             if (storedCoordinates.length > 600) {
                                 storedCoordinates = [];
@@ -123,7 +127,9 @@ setTimeout(function () {
                 var randArmy = Math.floor(Math.random() * 3);
                 var unit = getUnitNode(getArmyFrame(), locale.army[randArmy]);
 
-                unit.click(function(){});
+                if (unit) {
+                    unit.click(function(){});
+                }
 
                 getArmyFrame().location.reload();
                 getCombatField().location.reload();
@@ -138,90 +144,29 @@ setTimeout(function () {
 
 }, 5000);
 
-//setTimeout(function () {
-//    //var maze = new Maze();
-//
-//    // this specific loop helps to randomize setInterval between 1 and 3 seconds
-//    // http://stackoverflow.com/questions/6962658/randomize-setinterval-how-to-rewrite-same-random-after-random-interval
-//    (function loop() {
-//        var rand = Math.random() * (3000 - 1000) + 1000;
-//        setTimeout(function () {
-//            if (option.action == "go") {
-//                if (getTravelFrame()) {
-//                    console.log('It is Travel Frame');
-//                    if (speed() > 30) {
-//                        console.log("Speed " + speed() + " is enough!");
-//
-//                        // Get Coordinates
-//                        var currentCoordinate = getCoordinates();
-//                        console.log("Current Coordinate:");
-//                        console.log(currentCoordinate);
-//                        var availableArrows = getAvailableArrows(analyseArrow);
-//                        console.log("Available Arrows:");
-//                        console.log(availableArrows);
-//                        //
-//                        //// Choose Coordinates
-//                        //var chosenArrow = chooseCoordinates(availableArrows);
-//                        //
-//                        //// Save Coordinates
-//                        //saveCoordinates(currentCoordinate, function(){});
-//                        //
-//                        //
-//                        //// Detect Person. If somebody - path through
-//                        //if (searchPersons()) {
-//                        //    move(chosenArrow);
-//                        //} else {
-//                        //    if (!searchTreasure && !searchMob()) {
-//                        //        move(chosenArrow);
-//                        //    }
-//                        //}
-//
-//                    }
-//                } else {
-//
-//                    var armyFrame = getArmyFrame();
-//                    var randArmy = Math.floor(Math.random() * 3);
-//
-//                    try {
-//
-//                        var armySelector = "#" + army[randArmy] + " .ArmyShow .cp[onclick][valign=middle]";
-//                        var chooseArmy = armyFrame.document.querySelectorAll(armySelector);
-//                        chooseArmy[chooseArmy.length - 1].click();
-//
-//                        armyFrame.location.reload();
-//                    }
-//                    catch (err) {
-//                        armyFrame.location.reload();
-//                    }
-//                    if (window.frames[locale.mainFrame].frames[locale.combatFrame].document.querySelector("#la a")) {
-//                        if (window.frames[locale.mainFrame].frames[locale.combatFrame]) {
-//                            window.frames[locale.mainFrame].frames[locale.combatFrame].document.querySelector("#la a").click();
-//                        }
-//                    }
-//
-//                }
-//            }
-//            loop();
-//        }, rand);
-//    }());
-//
-//}, 5000);
-//
-//setInterval(function () {
-//    var c = locale.coordinates;
-//    if (arrowsArray[0] == c.north) {
-//        arrowsArray = [c.south, c.west, c.north, c.east];
-//    } else {
-//        arrowsArray = [c.north, c.east, c.south, c.west];
-//    }
-//}, 3600000);
-//
-////setInterval(function () {
-////    reloadMap();
-////}, 28800000);
-////
-////setInterval(function () {
-////    if (option.action == "go") {
-////        changeWear();
-////    }
-////}, 30000);
+setInterval(function () {
+    smaugGet(['action', 'clothes'], function(act) {
+        if (act.action == "go") {
+            smaugSendRequest(locale.wearLink + act.clothes.travel, function(){
+                console.log("Clothes weared");
+            });
+        }
+    });
+}, 30000);
+
+chrome.runtime.onMessage.addListener(
+function(request, sender, sendResponse) {
+    if (request.action === "reload") {
+        location.reload();
+    } else if (request.action === "drinkBeverage") {
+
+        smaugGet(['clothes', 'action'], function(act) {
+            if (act.action == "go") {
+                smaugSendRequest("http://fantasyland.ru/cgi/inv_wear.php?id=" + act.clothes.beverage, function(){
+                    console.log("Beverage has been drinked");
+                });
+            }
+        });
+
+    }
+});

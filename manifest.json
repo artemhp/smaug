@@ -3,6 +3,7 @@
   "name": "Liga Geroev Labirint",
   "permissions": [
     "storage",
+    "alarms",
     "tabs", "*://*.fantasyland.ru/*"
   ],
   "description": "This extension demonstrates a 'browser action' with kittens.",
@@ -18,7 +19,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://*.fantasyland.ru/*"],
+      "matches": ["*://*.fantasyland.ru/main.php"],
       "js": [
         "./popup/methods.js",
         "./functions/actions.js",

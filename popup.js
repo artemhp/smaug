@@ -19,7 +19,8 @@ buttonUpdate.addEventListener("click", function () {
     smaugSet({
         'clothes': {
             'combat': inputCombatClothes.value,
-            'travel': inputTravelClothes.value
+            'travel': inputTravelClothes.value,
+            'beverage' : inputBeverage.value
         }
     }, function () {
         console.log("Clothes has been Changed!");

@@ -1,4 +1,4 @@
-var sendMessage = function (message, sendResponse) {
+function sendMessage (message, sendResponse) {
     chrome.tabs.query({url: "http://fantasyland.ru/main.php"}, function (tabs) {
         if (sendResponse) {
             chrome.tabs.sendMessage(tabs[0].id, message, sendResponse);
@@ -8,7 +8,7 @@ var sendMessage = function (message, sendResponse) {
     });
 };
 
-var sendMessageToEvent = function (el, message, callback) {
+function sendMessageToEvent (el, message, callback) {
     el.addEventListener("click", function () {
         chrome.runtime.sendMessage({popupAction: message}, function (response) {
             callback(response);

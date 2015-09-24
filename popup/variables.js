@@ -1,5 +1,7 @@
 var inputTravelClothes = document.getElementById("travelClothes");
 var inputCombatClothes = document.getElementById("combatClothes");
+var inputBeverage = document.getElementById("beverage");
+
 var buttonUpdate = document.getElementById("updateWear");
 
 var buttonStop = document.getElementById("buttonStop");
