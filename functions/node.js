@@ -54,6 +54,10 @@ var getUnitNode = function(armyFrame, armyType){
     return  chooseArmy[chooseArmy.length - 1];
 };
 
+//var getUnitNode = function(armyFrame){
+//    return armyFrame.document.querySelector("");
+//};
+
 var getExitLink = function(combatFrame){
     var laa = combatFrame.document.querySelector("#la a");
     return laa;
