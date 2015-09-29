@@ -163,7 +163,7 @@ setInterval(function () {
 chrome.runtime.onMessage.addListener(
 function(request, sender, sendResponse) {
     if (request.action === "reload") {
-        location.reload();
+        //location.reload();
     } else if (request.action === "drinkBeverage") {
 
         smaugGet(['clothes', 'action'], function(act) {
