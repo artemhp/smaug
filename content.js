@@ -150,7 +150,7 @@ setTimeout(function () {
 
                 //console.log(getHealthNode(getArmyFrame()).getAttribute("style"));
                 var healthCheck = parseInt(getHealthNode(getArmyFrame()).getAttribute("style").match(/\d+/)[0]);
-                if (healthCheck < 99) {
+                if (healthCheck < 35) {
 
                     smaugGet(['clothes'], function(act) {
                         console.log(act.svitokHealthPic);
