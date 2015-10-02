@@ -7,9 +7,33 @@
 
 <table class="wearRoom">
     <tr>
-        <td class="wearRoomTitle">Beverage</td>
+        <td class="wearRoomTitle">Health:</td>
         <td>
-            <input type="text" name="beverage" id="beverage"/>
+            <input type="text" name="svitokHealth" id="svitokHealth"/>
+        </td>
+    </tr>
+    <tr>
+        <td class="wearRoomTitle">Health Pic:</td>
+        <td>
+            <input type="text" name=svitokHealthPic id="svitokHealthPic"/>
+        </td>
+    </tr>
+    <tr>
+        <td class="wearRoomTitle">Beverage 1:</td>
+        <td>
+            <input type="text" name="beverage1" id="beverage1"/>
+        </td>
+    </tr>
+    <tr>
+        <td class="wearRoomTitle">Beverage 2:</td>
+        <td>
+            <input type="text" name="beverage2" id="beverage2"/>
+        </td>
+    </tr>
+    <tr>
+        <td class="wearRoomTitle">Beverage 3:</td>
+        <td>
+            <input type="text" name="beverage3" id="beverage3"/>
         </td>
     </tr>
     <tr>
@@ -22,6 +46,18 @@
         <td class="wearRoomTitle">Travel Clothes</td>
         <td>
             <input type="text" name="travelClothes" id="travelClothes"/>
+        </td>
+    </tr>
+    <tr>
+        <td class="wearRoomTitle">Reload:</td>
+        <td style="text-align: left">
+            <input type="checkbox" name="reload" id="reload"/>
+        </td>
+    </tr>
+    <tr>
+        <td class="wearRoomTitle">Exit Timer:</td>
+        <td>
+            <input type="text" name="delayInMinutes" id="delayInMinutes"/>
         </td>
     </tr>
     <tr>
@@ -68,7 +104,7 @@
     }
 
     .statisticsTbl .title,
-    .wearRoomTitle{
+    .wearRoomTitle {
         font-weight: bold;
         white-space: nowrap;
     }

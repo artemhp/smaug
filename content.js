@@ -24,9 +24,6 @@ smaugGet('statistics', function(a){
             }
         };
 
-        //statisticsObj.itemsFound[moveSearchTreasure.type] = moveSearchTreasure.count;
-        //statisticsObj.daily[smaugDateFormat()] = {};
-
         smaugSet({
             'statistics': statisticsObj
         }, function(){
@@ -85,6 +82,20 @@ function actionOnTravelFrame(){
         });
 
     }
+
+    smaugGet(['exit'], function(act) {
+        if (act.exit == true){
+            console.log("exit!!!");
+            chrome.runtime.sendMessage({action: "clearAlarm"});
+            smaugSet({
+                'exit': false
+            }, function(){
+                console.log("Clear Alarm");
+            });
+            document.location.href = '../cgi/exit.php';
+        }
+    });
+
 }
 setTimeout(function () {
     (function loop() {
@@ -137,6 +148,17 @@ setTimeout(function () {
                     unit.click(function(){});
                 }
 
+                //console.log(getHealthNode(getArmyFrame()).getAttribute("style"));
+                var healthCheck = parseInt(getHealthNode(getArmyFrame()).getAttribute("style").match(/\d+/)[0]);
+                if (healthCheck < 99) {
+
+                    smaugGet(['clothes'], function(act) {
+                        console.log(act.svitokHealthPic);
+                        window.frames[locale.mainFrame].frames[locale.armyFrame].document.querySelectorAll("[src='"+act.clothes.svitokHealthPic+"']")[0].click()
+                    });
+
+                }
+
                 getArmyFrame().location.reload();
                 getCombatField().location.reload();
 
@@ -163,16 +185,60 @@ setInterval(function () {
 chrome.runtime.onMessage.addListener(
 function(request, sender, sendResponse) {
     if (request.action === "reload") {
-        //location.reload();
-    } else if (request.action === "drinkBeverage") {
 
-        smaugGet(['clothes', 'action'], function(act) {
-            if (act.action == "go") {
-                smaugSendRequest("http://fantasyland.ru/cgi/inv_wear.php?id=" + act.clothes.beverage, function(){
-                    console.log("Beverage has been drinked");
-                });
+        smaugGet(['clothes'], function(act) {
+            if (act.action == "go" && act.clothes.reload == true) {
+                location.reload();
             }
         });
 
+
+    } else if (request.action === "drinkBeverage") {
+
+        if (getTravelFrame()) {
+            smaugGet(['clothes', 'action'], function(act) {
+                if (act.action == "go") {
+                    if (act.clothes.beverage1) {
+                        smaugSendRequest(locale.drinkLink + act.clothes.beverage1, function(){
+                            console.log("Beverage has been drinked");
+                        });
+                    }
+                    if (act.clothes.beverage2) {
+                        smaugSendRequest(locale.drinkLink + act.clothes.beverage2, function(){
+                            console.log("Beverage has been drinked");
+                        });
+                    }
+                    if(act.clothes.beverage3) {
+                        smaugSendRequest(locale.drinkLink + act.clothes.beverage3, function(){
+                            console.log("Beverage has been drinked");
+                        });
+                    }
+
+                }
+            });
+        }
+
+
+    }  else if (request.action === "useHealth") {
+        smaugGet(['clothes', 'action'], function(act) {
+            if (getTravelFrame()) {
+                if(act.action == "go" && act.clothes.svitokHealth) {
+                    smaugSendRequest(locale.drinkLink + act.clothes.svitokHealth, function(){});
+                    smaugSendRequest(locale.drinkLink + act.clothes.svitokHealth, function(){});
+                    smaugSendRequest(locale.drinkLink + act.clothes.svitokHealth, function(){});
+                    smaugSendRequest(locale.drinkLink + act.clothes.svitokHealth, function(){});
+                    smaugSendRequest(locale.drinkLink + act.clothes.svitokHealth, function(){});
+                    smaugSendRequest(locale.drinkLink + act.clothes.svitokHealth, function(){});
+                    smaugSendRequest(locale.drinkLink + act.clothes.svitokHealth, function(){});
+                    smaugSendRequest(locale.drinkLink + act.clothes.svitokHealth, function(){});
+                }
+            }
+        });
+    } else if (request.action === "initDelay") {
+        smaugSet({
+            'exit': true
+        }, function(){
+            console.log("If not in combat - Quit");
+        });
     }
 });

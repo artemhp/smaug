@@ -4,24 +4,6 @@ function smaugSet(obj, result) {
     });
 }
 
-//smaugSet({
-//    'statistics': {
-//        'clothes': {
-//            'combatClothes': ''
-//        },
-//        'statistics' : {
-//            memory: 0,
-//            'mobsFound' : 0,
-//            steps: 0,
-//            objects : {
-//
-//            }
-//        }
-//    }
-//}, function(){
-//    console.log("Statistics Updated");
-//});
-
 var sendMessage = function (message, sendResponse) {
     chrome.tabs.query({url: "http://fantasyland.ru/main.php"}, function (tabs) {
         if (sendResponse) {
@@ -32,26 +14,43 @@ var sendMessage = function (message, sendResponse) {
     });
 };
 
-chrome.alarms.create("refreshForSecure", {periodInMinutes: 6});
+chrome.alarms.create("refreshForSecure", {periodInMinutes: 1});
 chrome.alarms.create("drinkBeverage", {periodInMinutes: 32});
+chrome.alarms.create("useHealth", {periodInMinutes: 5});
+
+//delayInMinutes
 
 chrome.alarms.onAlarm.addListener(function (alarm) {
 
-    console.log(alarm);
-
     if (alarm.name == "refreshForSecure") {
-        sendMessage({action: "reload"}, function(){});
+        sendMessage({action: "reload"}, function () {
+        });
     } else if (alarm.name == "drinkBeverage") {
-        sendMessage({action: "drinkBeverage"}, function(){});
+        sendMessage({action: "drinkBeverage"}, function () {
+        });
+    }
+    else if (alarm.name == "useHealth") {
+        sendMessage({action: "useHealth"}, function () {
+        });
+    } else if (alarm.name == "initDelay") {
+        sendMessage({action: "initDelay"}, function () {
+        });
     }
 
 });
 
 chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
+    function (request, sender, sendResponse) {
         if (request.action === "combat") {
             chrome.browserAction.setIcon({path: 'icon-combat.png'});
         } else if (request.action === "travel") {
             chrome.browserAction.setIcon({path: 'icon.png'});
+        } else if (request.action === "delay") {
+            chrome.alarms.create("initDelay", {delayInMinutes: parseFloat(request.delayInMinutes)*60});
+            console.log("alarm created" + (parseFloat(request.delayInMinutes)*60));
+        } else if (request.action === "clearAlarm"){
+            //chrome.alarms.clear("initDelay");
+        } else if (request.action === "getAlarm") {
+
         }
     });

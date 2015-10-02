@@ -16,17 +16,28 @@ buttonStop.addEventListener("click", function () {
 }, false);
 
 buttonUpdate.addEventListener("click", function () {
+
     smaugSet({
         'clothes': {
             'combat': inputCombatClothes.value,
             'travel': inputTravelClothes.value,
-            'beverage' : inputBeverage.value
+            'beverage1' : inputBeverage1.value,
+            'beverage2' : inputBeverage2.value,
+            'beverage3' : inputBeverage3.value,
+            'svitokHealth' : svitokHealth.value,
+            'svitokHealthPic' : svitokHealthPic.value,
+            'reload' : reload.checked
         }
     }, function () {
         console.log("Clothes has been Changed!");
     });
 
     smaugSendRequest(wearLink + inputTravelClothes.value);
+
+    if (delayInMinutes.value) {
+        chrome.extension.sendMessage({action: "delay", delayInMinutes: delayInMinutes.value}, function(response) {});
+    }
+
 }, false);
 
 // When Click Reset Button
@@ -43,10 +54,19 @@ buttonStart.addEventListener("click", function () {
     });
 }, false);
 
-smaugGet("clothes", function (a) {
+smaugGet(["clothes"], function (a) {
     document.getElementById("combatClothes").value = a.clothes.combat;
     document.getElementById("travelClothes").value = a.clothes.travel;
-    document.getElementById("beverage").value = a.clothes.beverage;
+    document.getElementById("beverage1").value = a.clothes.beverage1;
+    document.getElementById("beverage2").value = a.clothes.beverage2;
+    document.getElementById("beverage3").value = a.clothes.beverage3;
+    document.getElementById("svitokHealth").value = a.clothes.svitokHealth;
+    document.getElementById("svitokHealthPic").value = a.clothes.svitokHealthPic;
+
+    if (a.clothes.reload == true) {
+        document.getElementById("reload").checked = true;
+    }
+
 });
 
 smaugGet("action", function (a) {

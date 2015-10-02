@@ -44,6 +44,10 @@ var getArmyFrame = function() {
     return window.frames[locale.mainFrame].frames[locale.armyFrame];
 };
 
+var getHealthNode = function(combatFrame){
+  return combatFrame.document.querySelector("#hp_col44322");
+};
+
 var getCombatField = function() {
     return window.frames[locale.mainFrame].frames[locale.combatFrame];
 };

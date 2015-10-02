@@ -5,6 +5,7 @@ var locale = {
     player: '[title="Игрок"]',
     attack: '[title="Напасть на жителя лабиринта"]',
     wearLink: 'http://fantasyland.ru/cgi/set_wear.php?id=',
+    drinkLink: 'http://fantasyland.ru/cgi/inv_wear.php?id=',
     pick: '[title=Подобрать]',
     unlock: '[title=Отпереть]',
     goldSelector: '#pickupID0',
