@@ -149,14 +149,16 @@ setTimeout(function () {
                 }
 
                 //console.log(getHealthNode(getArmyFrame()).getAttribute("style"));
-                var healthCheck = parseInt(getHealthNode(getArmyFrame()).getAttribute("style").match(/\d+/)[0]);
-                if (healthCheck < 35) {
+                if (getHealthNode(getArmyFrame())) {
+                    var healthCheck = parseInt(getHealthNode(getArmyFrame()).getAttribute("style").match(/\d+/)[0]);
+                    if (healthCheck < 35) {
 
-                    smaugGet(['clothes'], function(act) {
-                        console.log(act.svitokHealthPic);
-                        window.frames[locale.mainFrame].frames[locale.armyFrame].document.querySelectorAll("[src='"+act.clothes.svitokHealthPic+"']")[0].click()
-                    });
+                        smaugGet(['clothes'], function(act) {
+                            console.log(act.svitokHealthPic);
+                            window.frames[locale.mainFrame].frames[locale.armyFrame].document.querySelectorAll("[src='"+act.clothes.svitokHealthPic+"']")[0].click()
+                        });
 
+                    }
                 }
 
                 getArmyFrame().location.reload();
