@@ -1,102 +1,4 @@
-var storedCoordinates = [];
-var currentCoordinate;
-var storedCoordinatesArray = [];
-var arrowsArray = [
-    locale.coordinates.north,
-    locale.coordinates.east,
-    locale.coordinates.south,
-    locale.coordinates.west
-];
 
-smaugGet(null, function(a){
-    console.log(a);
-});
-
-//chrome.storage.local.remove("statistics");
-smaugGet('statistics', function(a){
-    if (!a.statistics){
-        var statisticsObj = {
-            'storedCoordinates': [],
-            'itemsFound': {
-            },
-            'steps': 0,
-            'daily': {
-            }
-        };
-
-        smaugSet({
-            'statistics': statisticsObj
-        }, function(){
-            console.log("Statistics has been created");
-        });
-    }
-});
-
-smaugGet('clothes', function(a){
-    if (!a.clothes){
-
-        var clothesObj = {
-            'combat': 777596,
-            'travel': 777596
-        };
-
-        smaugSet({
-            'clothes': clothesObj
-        }, function(){
-            console.log("Clothes has been created");
-        });
-
-    }
-});
-
-//smaugSet({
-//    'clothes.combat': 777596
-//}, function(){});
-
-function actionOnTravelFrame(){
-    if (speed() > 30) {
-        //console.log("Speed " + speed() + " is enough!");
-
-        // Get Coordinates
-        var currentCoordinate = getCoordinates();
-        //console.log("Current Coordinate:" + currentCoordinate);
-
-        // Get Available Arrows
-        var availableArrows = getAvailableArrows(analyseArrow);
-        //console.log("Available Arrows:" + availableArrows);
-
-        // Choose Coordinates
-        var chosenArrow = chooseCoordinates(availableArrows);
-        //console.log(chosenArrow['title']);
-
-        // Save Coordinates
-        smaugGet('localCoordinate', function(a){
-            if (a.localCoordinate !== currentCoordinate.local) {
-                // It is definitely not after refresh
-                saveCoordinates(currentCoordinate, function(){
-                    move(chosenArrow);
-                });
-            } else {
-                move(chosenArrow)
-            }
-        });
-
-    }
-
-    smaugGet(['exit'], function(act) {
-        if (act.exit == true){
-            console.log("exit!!!");
-            chrome.runtime.sendMessage({action: "clearAlarm"});
-            smaugSet({
-                'exit': false
-            }, function(){
-                console.log("Clear Alarm");
-            });
-            document.location.href = '../cgi/exit.php';
-        }
-    });
-
-}
 setTimeout(function () {
     (function loop() {
         var rand = Math.random() * (2000 - 1000) + 1000;
@@ -115,11 +17,12 @@ setTimeout(function () {
                                 storedCoordinates = a.coordinates;
                             }
 
-                            if (storedCoordinates.length > 600) {
+                            if (storedCoordinates.length > 300) {
                                 storedCoordinates = [];
                                 chrome.storage.local.remove("coordinates");
                             }
 
+                            // Try to avoid this
                             storedCoordinatesArray = storedCoordinates.map(function(el){
                                 return el.local;
                             });
@@ -188,7 +91,7 @@ chrome.runtime.onMessage.addListener(
 function(request, sender, sendResponse) {
     if (request.action === "reload") {
 
-        smaugGet(['clothes'], function(act) {
+        smaugGet(['action', 'clothes'], function(act) {
             if (act.action == "go" && act.clothes.reload == true) {
                 location.reload();
             }
@@ -199,7 +102,7 @@ function(request, sender, sendResponse) {
 
         if (getTravelFrame()) {
             smaugGet(['clothes', 'action'], function(act) {
-                if (act.action == "go") {
+                if (act.action == "go" && getTravelFrame()) {
                     if (act.clothes.beverage1) {
                         smaugSendRequest(locale.drinkLink + act.clothes.beverage1, function(){
                             console.log("Beverage has been drinked");
@@ -223,8 +126,8 @@ function(request, sender, sendResponse) {
 
     }  else if (request.action === "useHealth") {
         smaugGet(['clothes', 'action'], function(act) {
-            if (getTravelFrame()) {
-                if(act.action == "go" && act.clothes.svitokHealth) {
+
+                if(act.action == "go" && act.clothes.svitokHealth && getTravelFrame()) {
                     smaugSendRequest(locale.drinkLink + act.clothes.svitokHealth, function(){});
                     smaugSendRequest(locale.drinkLink + act.clothes.svitokHealth, function(){});
                     smaugSendRequest(locale.drinkLink + act.clothes.svitokHealth, function(){});
@@ -234,7 +137,7 @@ function(request, sender, sendResponse) {
                     smaugSendRequest(locale.drinkLink + act.clothes.svitokHealth, function(){});
                     smaugSendRequest(locale.drinkLink + act.clothes.svitokHealth, function(){});
                 }
-            }
+
         });
     } else if (request.action === "initDelay") {
         smaugSet({

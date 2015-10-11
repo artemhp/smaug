@@ -14,7 +14,7 @@ var sendMessage = function (message, sendResponse) {
     });
 };
 
-chrome.alarms.create("refreshForSecure", {periodInMinutes: 1});
+chrome.alarms.create("refreshForSecure", {periodInMinutes: 6});
 chrome.alarms.create("drinkBeverage", {periodInMinutes: 32});
 chrome.alarms.create("useHealth", {periodInMinutes: 5});
 

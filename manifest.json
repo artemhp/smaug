@@ -21,10 +21,12 @@
     {
       "matches": ["*://*.fantasyland.ru/main.php"],
       "js": [
+        "./functions/locale.js",
         "./popup/methods.js",
+        "./init.js",
+        "./actions/travel.js",
         "./functions/actions.js",
         "./functions/helpers.js",
-        "./functions/locale.js",
         "./functions/node.js",
         "./content.js"
       ],
