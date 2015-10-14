@@ -100,52 +100,21 @@ function searchMob() {
     var mob = getMobNode(getTravelFrame());
     if (mob.length > 0 && getHealthBarWidth() == "100%") {
 
-        smaugGet('statistics', function(a) {
-            var currentDate = smaugDateFormat();
-
-            if (a.statistics.daily[currentDate]) {
-                // Case when current date in statistics exist
-                a.statistics.daily[currentDate]['creatures'] = parseInt(a.statistics.daily[currentDate]['creatures']) + 1;
-            } else {
-                // Case when current date in statistics doesn't exist
-                a.statistics.daily[currentDate] = {};
-                a.statistics.daily[currentDate]['creatures'] = 1;
-            }
-
-            // General Statistics
-            if (a.statistics.creatures) {
-                a.statistics.creatures = parseInt(a.statistics.creatures) + 1;
-            } else {
-                a.statistics.creatures = 1;
-            }
-
-            smaugSet({
-                'statistics': a.statistics
-            }, function () {
-                smaugGet('clothes', function (cloth) {
-                    smaugSendRequest(locale.wearLink + cloth.clothes.combat, function(request){
-                        if (request.status === 200) {
+        smaugGet('clothes', function (cloth) {
+            smaugSendRequest(locale.wearLink + cloth.clothes.combat, function (request) {
+                if (request.status === 200) {
+                    smaugSet({
+                        'travelClothesEnable': false
+                    }, function (){
+                        console.log(mob[0]);
+                        checkInitDaily("creature", 1, function () {
                             mob[0].click();
-                        }
+                        });
                     });
-                });
+                }
             });
-
         });
 
-        //smaugSendRequest(locale.wearLink + localStorage["combatClothes"], function(request){
-        //    if (request.status === 200) {
-        //        // --------------------------------------------
-        //        // Statistics Mobs Found
-        //        // --------------------------------------------
-        //        if (localStorage["statisticsMobsAttacks"]) {
-        //            localStorage["statisticsMobsAttacks"] = parseInt(localStorage["statisticsMobsAttacks"]) + 1;
-        //        } else {
-        //            localStorage["statisticsMobsAttacks"] = 1;
-        //        }
-        //        mob[0].click();
-        //    }
-        //});
         return true;
     } else {
         return false;
@@ -214,89 +183,3 @@ function speed() {
     var parseSpeed = getSpeedNode(getTravelFrame()).innerHTML.match(/(\d+)/gi);
     return parseInt(parseSpeed[0]);
 }
-
-//function move(chosenArrow) {
-//
-//    if (getHealthBarWidth()) {
-//        if (getHealthBarWidth() == "100%") {
-//
-//            // Detect Person. If somebody - path through
-//            var moveSearchPerson = searchPersons();
-//            var moveSearchMob = searchMob();
-//            var moveSearchTreasure = searchTreasure();
-//
-//            if (moveSearchPerson) {
-//                chosenArrow.click();
-//                return true;
-//            }
-//
-//            // Detect Treasure
-//            if (moveSearchTreasure) {
-//                //console.log(moveSearchTreasure);
-//                //smaugGet(null, function(a){
-//                //    console.log(a);
-//                //});
-//                if (moveSearchTreasure.type == "locked") {
-//                    moveSearchTreasure.item.click();
-//                } else {
-//                    smaugGet('statistics', function (a) {
-//
-//                        var currentItemType = moveSearchTreasure.type;
-//                        var currentItemCount = moveSearchTreasure.count;
-//                        var currentDate = smaugDateFormat();
-//                        var currentDailyType;
-//                        var currentDailyCount = 0;
-//
-//                        // Daily Statistics
-//                        if (a.statistics.daily[currentDate]) {
-//                            // Case when current date in statistics exist
-//                            currentDailyType = a.statistics.daily[currentDate][currentItemType];
-//                            if (currentDailyType) {
-//                                currentDailyCount = parseInt(currentDailyType) + parseInt(currentItemCount);
-//                            } else {
-//                                a.statistics.daily[currentDate][currentItemType] = {};
-//                                currentDailyCount = parseInt(currentItemCount);
-//                            }
-//                            a.statistics.daily[currentDate][currentItemType] = currentDailyCount;
-//
-//                        } else {
-//                            // Case when current date in statistics doesn't exist
-//                            a.statistics.daily[currentDate] = {};
-//                            a.statistics.daily[currentDate][currentItemType] = parseInt(currentItemCount);
-//                        }
-//
-//                        // General Statistics
-//                        if (a.statistics.itemsFound[currentItemType]) {
-//                            a.statistics.itemsFound[currentItemType] = parseInt(a.statistics.itemsFound[currentItemType]) + parseInt(moveSearchTreasure.count)
-//                        } else {
-//                            a.statistics.itemsFound[currentItemType] = {};
-//                            a.statistics.itemsFound[currentItemType] = parseInt(moveSearchTreasure.count)
-//                        }
-//
-//                        //console.log(a.statistics);
-//
-//
-//                        smaugSet({
-//                            'statistics': a.statistics
-//                        }, function () {
-//                            moveSearchTreasure.item.click();
-//                        });
-//
-//                    });
-//                }
-//                return false;
-//            }
-//
-//
-//            if (moveSearchMob) {
-//                return false;
-//            }
-//
-//            chosenArrow.click();
-//            return true;
-//        }
-//    } else {
-//        getHealthTab().click();
-//        return false;
-//    }
-//}

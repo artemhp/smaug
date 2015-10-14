@@ -55,46 +55,37 @@ function shuffle(array) {
     return array;
 }
 
-function setStatisticsItem (moveSearchTreasure, callback) {
+function checkInitDaily (type, count, callback) {
     smaugGet('statistics', function (a) {
+        var dateFormat = smaugDateFormat();
 
-        var currentItemType = moveSearchTreasure.type;
-        var currentItemCount = moveSearchTreasure.count;
-        var currentDate = smaugDateFormat();
-        var currentDailyType;
-        var currentDailyCount = 0;
-
-        // Daily Statistics
-        if (a.statistics.daily[currentDate]) {
-            // Case when current date in statistics exist
-            currentDailyType = a.statistics.daily[currentDate][currentItemType];
-            if (currentDailyType) {
-                currentDailyCount = parseInt(currentDailyType) + parseInt(currentItemCount);
+        if (!a.statistics["daily"][dateFormat]){
+            a.statistics["daily"][dateFormat] = {};
+            a.statistics["daily"][dateFormat][type] = count;
+            a.statistics["daily"][dateFormat]["experience"] = getExpNode().innerHTML.match(/\d+$/)[0];
+            smaugSet({
+                'statistics': a.statistics
+            }, function () {
+                callback();
+            });
+        } else {
+            console.log(a.statistics["daily"][dateFormat][type]);
+            if (!a.statistics["daily"][dateFormat][type]) {
+                a.statistics["daily"][dateFormat][type] = count;
+                smaugSet({
+                    'statistics': a.statistics
+                }, function () {
+                    callback();
+                });
             } else {
-                a.statistics.daily[currentDate][currentItemType] = {};
-                currentDailyCount = parseInt(currentItemCount);
+                a.statistics["daily"][dateFormat][type] = a.statistics["daily"][dateFormat][type] + count ;
+                smaugSet({
+                    'statistics': a.statistics
+                }, function () {
+                    callback();
+                });
             }
-            a.statistics.daily[currentDate][currentItemType] = currentDailyCount;
-
-        } else {
-            // Case when current date in statistics doesn't exist
-            a.statistics.daily[currentDate] = {};
-            a.statistics.daily[currentDate][currentItemType] = parseInt(currentItemCount);
         }
-
-        // General Statistics
-        if (a.statistics.itemsFound[currentItemType]) {
-            a.statistics.itemsFound[currentItemType] = parseInt(a.statistics.itemsFound[currentItemType]) + parseInt(moveSearchTreasure.count)
-        } else {
-            a.statistics.itemsFound[currentItemType] = {};
-            a.statistics.itemsFound[currentItemType] = parseInt(moveSearchTreasure.count)
-        }
-
-        smaugSet({
-            'statistics': a.statistics
-        }, function () {
-            callback();
-        });
 
     });
 }

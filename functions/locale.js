@@ -15,6 +15,7 @@ var locale = {
     showInfoFrame: 'show_info',
     armyFrame: 'your_army',
     healthLine: '#hpline',
+    expLine: '[title="Информация о повышении уровня"]',
     combatFrame: 'combat_panel',
     healthTab: '[title="Информация о персонаже"]',
     coordinates: {west: "d3", east: "d5", south: "d7", north: "d1"}

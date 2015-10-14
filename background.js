@@ -43,12 +43,14 @@ chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
         if (request.action === "combat") {
             chrome.browserAction.setIcon({path: 'icon-combat.png'});
+            chrome.browserAction.setBadgeText({text: request.health});
         } else if (request.action === "travel") {
             chrome.browserAction.setIcon({path: 'icon.png'});
+            chrome.browserAction.setBadgeText({text: ""});
         } else if (request.action === "delay") {
-            chrome.alarms.create("initDelay", {delayInMinutes: parseFloat(request.delayInMinutes)*60});
-            console.log("alarm created" + (parseFloat(request.delayInMinutes)*60));
-        } else if (request.action === "clearAlarm"){
+            chrome.alarms.create("initDelay", {delayInMinutes: parseFloat(request.delayInMinutes) * 60});
+            console.log("alarm created" + (parseFloat(request.delayInMinutes) * 60));
+        } else if (request.action === "clearAlarm") {
             //chrome.alarms.clear("initDelay");
         } else if (request.action === "getAlarm") {
 

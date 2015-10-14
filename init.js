@@ -21,13 +21,9 @@ smaugGet('statistics', function(a){
     if (!a.statistics){
         var statisticsObj = {
             'storedCoordinates': [],
-            'itemsFound': {
-            },
-            'steps': 0,
             'daily': {
             }
         };
-
         smaugSet({
             'statistics': statisticsObj
         }, function(){
@@ -38,17 +34,19 @@ smaugGet('statistics', function(a){
 
 smaugGet('clothes', function(a){
     if (!a.clothes){
-
         var clothesObj = {
-            'combat': 777596,
-            'travel': 777596
+            'combat': 781545,
+            'travel': 781545,
+            'beverage1': 2503330,
+            'beverage2': 2503330,
+            'beverage3': 2503330,
+            'svitokHealth': 130105,
+            'svitokHealthPic': '/images/items/scroll_heal_10.gif'
         };
-
         smaugSet({
             'clothes': clothesObj
         }, function(){
             console.log("Clothes has been created");
         });
-
     }
 });

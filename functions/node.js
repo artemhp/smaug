@@ -48,6 +48,10 @@ var getHealthNode = function(combatFrame){
   return combatFrame.document.querySelector("#hp_col44322");
 };
 
+var getExpNode = function() {
+    return window.frames[locale.mainFrame].frames[locale.showInfoFrame].document.querySelector(locale.expLine);
+}
+
 var getCombatField = function() {
     return window.frames[locale.mainFrame].frames[locale.combatFrame];
 };

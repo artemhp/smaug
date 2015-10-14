@@ -5,6 +5,8 @@ setTimeout(function () {
         setTimeout(function() {
             if (getTravelFrame()) {
 
+                //chrome.storage.local.clear();
+
                 chrome.runtime.sendMessage({action: "travel"});
 
                 smaugGet('action', function(act) {
@@ -42,34 +44,35 @@ setTimeout(function () {
         setTimeout(function() {
             if (getArmyFrame()) {
 
-                chrome.runtime.sendMessage({action: "combat"});
+                smaugGet('action', function(act) {
+                    if (act.action == "go") {
+                        var randArmy = Math.floor(Math.random() * 3);
+                        var unit = getUnitNode(getArmyFrame(), locale.army[randArmy]);
 
-                var randArmy = Math.floor(Math.random() * 3);
-                var unit = getUnitNode(getArmyFrame(), locale.army[randArmy]);
+                        if (unit) {
+                            unit.click(function(){});
+                        }
 
-                if (unit) {
-                    unit.click(function(){});
-                }
+                        if (getHealthNode(getArmyFrame())) {
+                            var healthCheck = parseInt(getHealthNode(getArmyFrame()).getAttribute("style").match(/\d+/)[0]);
+                            chrome.runtime.sendMessage({action: "combat", health: healthCheck});
 
-                //console.log(getHealthNode(getArmyFrame()).getAttribute("style"));
-                if (getHealthNode(getArmyFrame())) {
-                    var healthCheck = parseInt(getHealthNode(getArmyFrame()).getAttribute("style").match(/\d+/)[0]);
-                    if (healthCheck < 35) {
+                            if (healthCheck < 35) {
+                                smaugGet(['clothes'], function(act) {
+                                    window.frames[locale.mainFrame].frames[locale.armyFrame].document.querySelectorAll("[src='"+act.clothes.svitokHealthPic+"']")[0].click()
+                                });
+                            }
+                        }
 
-                        smaugGet(['clothes'], function(act) {
-                            console.log(act.svitokHealthPic);
-                            window.frames[locale.mainFrame].frames[locale.armyFrame].document.querySelectorAll("[src='"+act.clothes.svitokHealthPic+"']")[0].click()
-                        });
+                        getArmyFrame().location.reload();
+                        getCombatField().location.reload();
 
+                        if (getExitLink(getCombatField())) {
+                            getExitLink(getCombatField()).click();
+                        }
                     }
-                }
+                });
 
-                getArmyFrame().location.reload();
-                getCombatField().location.reload();
-
-                if (getExitLink(getCombatField())) {
-                    getExitLink(getCombatField()).click();
-                }
             }
             loop();
         }, rand);
@@ -78,19 +81,25 @@ setTimeout(function () {
 }, 5000);
 
 setInterval(function () {
-    smaugGet(['action', 'clothes'], function(act) {
-        if (act.action == "go") {
-            smaugSendRequest(locale.wearLink + act.clothes.travel, function(){
-                console.log("Clothes weared");
-            });
-        }
-    });
+    if (getTravelFrame()) {
+        smaugGet(['action', 'clothes', 'travelClothesEnable'], function(act) {
+            if (act.action == "go" && !act.travelClothesEnable) {
+                smaugSendRequest(locale.wearLink + act.clothes.travel, function(){
+                    smaugSet({
+                        'travelClothesEnable': true
+                    }, function (){
+                        console.log("Travel Clothes has been enabled");
+                    });
+                });
+
+            }
+        });
+    }
 }, 30000);
 
 chrome.runtime.onMessage.addListener(
 function(request, sender, sendResponse) {
     if (request.action === "reload") {
-
         smaugGet(['action', 'clothes'], function(act) {
             if (act.action == "go" && act.clothes.reload == true) {
                 location.reload();

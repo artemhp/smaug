@@ -7,8 +7,8 @@ function countInArray(array, what) {
     return count;
 }
 
-function smaugDateFormat (){
+function smaugDateFormat() {
     var getDate = new Date();
-    var formatDate = getDate.getFullYear() + "-" + getDate.getMonth() + "-" + getDate.getDate();
-    return formatDate;
+    var formatDate = (getDate.getMonth()+1) + "/" + getDate.getDate() + "/" + getDate.getFullYear();
+    return (new Date(formatDate).getTime());
 }

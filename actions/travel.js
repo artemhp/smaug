@@ -15,9 +15,11 @@ function travelSolution(chosenArrow) {
         // Detect Treasure
         if (moveSearchTreasure) {
             if (moveSearchTreasure.type == "locked") {
-                moveSearchTreasure.item.click();
+                checkInitDaily(moveSearchTreasure.type, moveSearchTreasure.count, function(){
+                    moveSearchTreasure.item.click();
+                });
             } else {
-                setStatisticsItem(moveSearchTreasure, function(){
+                checkInitDaily(moveSearchTreasure.type, moveSearchTreasure.count, function(){
                     moveSearchTreasure.item.click();
                 });
             }
