@@ -43,7 +43,14 @@ chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
         if (request.action === "combat") {
             chrome.browserAction.setIcon({path: 'icon-combat.png'});
-            chrome.browserAction.setBadgeText({text: request.health});
+            chrome.browserAction.setBadgeText({text: request.health.toString()});
+
+            if (request.health < 40) {
+                chrome.browserAction.setBadgeBackgroundColor({color: "#ec1212"});
+            } else {
+                chrome.browserAction.setBadgeBackgroundColor({color: "#00920e"});
+            }
+
         } else if (request.action === "travel") {
             chrome.browserAction.setIcon({path: 'icon.png'});
             chrome.browserAction.setBadgeText({text: ""});
