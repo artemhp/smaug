@@ -127,6 +127,11 @@ function(request, sender, sendResponse) {
                             console.log("Beverage has been drinked");
                         });
                     }
+                    if(act.clothes.beverage4) {
+                        smaugSendRequest(locale.drinkLink + act.clothes.beverage4, function(){
+                            console.log("Beverage has been drinked");
+                        });
+                    }
 
                 }
             });

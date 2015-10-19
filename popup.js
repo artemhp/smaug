@@ -24,6 +24,7 @@ buttonUpdate.addEventListener("click", function () {
             'beverage1' : inputBeverage1.value,
             'beverage2' : inputBeverage2.value,
             'beverage3' : inputBeverage3.value,
+            'beverage4' : inputBeverage4.value,
             'svitokHealth' : svitokHealth.value,
             'svitokHealthPic' : svitokHealthPic.value,
             'reload' : reload.checked
@@ -60,6 +61,7 @@ smaugGet(["clothes"], function (a) {
     document.getElementById("beverage1").value = a.clothes.beverage1;
     document.getElementById("beverage2").value = a.clothes.beverage2;
     document.getElementById("beverage3").value = a.clothes.beverage3;
+    document.getElementById("beverage4").value = a.clothes.beverage4;
     document.getElementById("svitokHealth").value = a.clothes.svitokHealth;
     document.getElementById("svitokHealthPic").value = a.clothes.svitokHealthPic;
 

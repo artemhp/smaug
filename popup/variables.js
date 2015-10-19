@@ -3,6 +3,7 @@ var inputCombatClothes = document.getElementById("combatClothes");
 var inputBeverage1 = document.getElementById("beverage1");
 var inputBeverage2 = document.getElementById("beverage2");
 var inputBeverage3 = document.getElementById("beverage3");
+var inputBeverage4 = document.getElementById("beverage4");
 var svitokHealth = document.getElementById("svitokHealth");
 var svitokHealthPic = document.getElementById("svitokHealthPic");
 var delayInMinutes = document.getElementById("delayInMinutes");
