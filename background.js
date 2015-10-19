@@ -17,6 +17,7 @@ var sendMessage = function (message, sendResponse) {
 chrome.alarms.create("refreshForSecure", {periodInMinutes: 6});
 chrome.alarms.create("drinkBeverage", {periodInMinutes: 32});
 chrome.alarms.create("useHealth", {periodInMinutes: 5});
+chrome.alarms.create("shuffleArrows", {periodInMinutes: 20});
 
 //delayInMinutes
 
@@ -35,6 +36,8 @@ chrome.alarms.onAlarm.addListener(function (alarm) {
     } else if (alarm.name == "initDelay") {
         sendMessage({action: "initDelay"}, function () {
         });
+    } else if (alarm.name == "shuffleArrows") {
+        sendMessage({action: "shuffleArrows"}, function () {});
     }
 
 });

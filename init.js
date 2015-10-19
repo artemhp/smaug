@@ -9,8 +9,7 @@ var arrowsArray = [
     locale.coordinates.west
 ];
 
-shuffle(arrowsArray);
-setTimeout(function(){ shuffle(arrowsArray); }, 2000000);
+//shuffle(arrowsArray);
 
 smaugGet(null, function(a){
     console.log(a);

@@ -6,7 +6,6 @@ setTimeout(function () {
             if (getTravelFrame()) {
 
                 //chrome.storage.local.clear();
-
                 chrome.runtime.sendMessage({action: "travel"});
 
                 smaugGet('action', function(act) {
@@ -17,11 +16,6 @@ setTimeout(function () {
                                 storedCoordinates = [];
                             } else {
                                 storedCoordinates = a.coordinates;
-                            }
-
-                            if (storedCoordinates.length > 300) {
-                                storedCoordinates = [];
-                                chrome.storage.local.remove("coordinates");
                             }
 
                             // Try to avoid this
@@ -159,5 +153,12 @@ function(request, sender, sendResponse) {
         }, function(){
             console.log("If not in combat - Quit");
         });
+    } else if (request.action === "shuffleArrows") {
+        if (getTravelFrame()) {
+            shuffle(arrowsArray);
+            storedCoordinates = [];
+            chrome.storage.local.remove("coordinates");
+            console.log(arrowsArray);
+        }
     }
 });
