@@ -34,7 +34,7 @@ setTimeout(function () {
     }());
 
     (function loop() {
-        var rand = Math.random() * (15000 - 10000) + 10000;
+        var rand = Math.random() * (30000 - 25000) + 25000;
         setTimeout(function() {
             if (getArmyFrame()) {
 
@@ -74,6 +74,9 @@ setTimeout(function () {
 
 }, 5000);
 
+
+
+
 setInterval(function () {
     if (getTravelFrame()) {
         smaugGet(['action', 'clothes', 'travelClothesEnable'], function(act) {
@@ -89,7 +92,7 @@ setInterval(function () {
             }
         });
     }
-}, 30000);
+}, 1000);
 
 chrome.runtime.onMessage.addListener(
 function(request, sender, sendResponse) {
@@ -158,7 +161,6 @@ function(request, sender, sendResponse) {
             shuffle(arrowsArray);
             storedCoordinates = [];
             chrome.storage.local.remove("coordinates");
-            console.log(arrowsArray);
         }
     }
 });

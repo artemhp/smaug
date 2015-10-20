@@ -61,7 +61,8 @@ chrome.runtime.onMessage.addListener(
             chrome.alarms.create("initDelay", {delayInMinutes: parseFloat(request.delayInMinutes) * 60});
             console.log("alarm created" + (parseFloat(request.delayInMinutes) * 60));
         } else if (request.action === "clearAlarm") {
-            //chrome.alarms.clear("initDelay");
+            chrome.alarms.clear("initDelay");
+            sendResponse({success: true});
         } else if (request.action === "getAlarm") {
 
         }

@@ -66,9 +66,11 @@ function actionOnTravelFrame() {
     }
 
     // Check if it is time to exit
-    smaugGet(['exit'], function (act) {
+    smaugGet('exit', function (act) {
         if (act.exit == true) {
-            chrome.runtime.sendMessage({action: "clearAlarm"}, function () {
+            chrome.runtime.sendMessage({action: "clearAlarm"}, function (response) {
+                console.log("callback");
+                console.log(response.success);
                 smaugSet({
                     'exit': false
                 }, function () {

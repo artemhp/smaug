@@ -31,6 +31,16 @@ smaugGet('statistics', function(a){
     }
 });
 
+//smaugGet('travelClothesEnable', function(a){
+//    if (!a.travelClothesEnable){
+//        smaugSet({
+//            'travelClothesEnable': false
+//        }, function(){
+//            console.log("Statistics has been created");
+//        });
+//    }
+//});
+
 smaugGet('clothes', function(a){
     if (!a.clothes){
         var clothesObj = {
@@ -39,6 +49,7 @@ smaugGet('clothes', function(a){
             'beverage1': 2503330,
             'beverage2': 2503330,
             'beverage3': 2503330,
+            'beverage4': 2274,
             'svitokHealth': 130105,
             'svitokHealthPic': '/images/items/scroll_heal_10.gif'
         };
@@ -46,6 +57,16 @@ smaugGet('clothes', function(a){
             'clothes': clothesObj
         }, function(){
             console.log("Clothes has been created");
+        });
+    }
+});
+
+smaugGet('exit', function(a){
+    if (!a.exit){
+        smaugSet({
+            'exit': false
+        }, function(){
+            console.log("Property for Alarm has been Created");
         });
     }
 });
