@@ -34,7 +34,7 @@ setTimeout(function () {
     }());
 
     (function loop() {
-        var rand = Math.random() * (30000 - 25000) + 25000;
+        var rand = Math.random() * (18000 - 10000) + 10000;
         setTimeout(function() {
             if (getArmyFrame()) {
 

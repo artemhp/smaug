@@ -21,13 +21,13 @@ buttonUpdate.addEventListener("click", function () {
         'clothes': {
             'combat': inputCombatClothes.value,
             'travel': inputTravelClothes.value,
-            'beverage1' : inputBeverage1.value,
-            'beverage2' : inputBeverage2.value,
-            'beverage3' : inputBeverage3.value,
-            'beverage4' : inputBeverage4.value,
-            'svitokHealth' : svitokHealth.value,
-            'svitokHealthPic' : svitokHealthPic.value,
-            'reload' : reload.checked
+            'beverage1': inputBeverage1.value,
+            'beverage2': inputBeverage2.value,
+            'beverage3': inputBeverage3.value,
+            'beverage4': inputBeverage4.value,
+            'svitokHealth': svitokHealth.value,
+            'svitokHealthPic': svitokHealthPic.value,
+            'reload': reload.checked
         }
     }, function () {
         console.log("Clothes has been Changed!");
@@ -36,7 +36,8 @@ buttonUpdate.addEventListener("click", function () {
     smaugSendRequest(wearLink + inputTravelClothes.value);
 
     if (delayInMinutes.value) {
-        chrome.extension.sendMessage({action: "delay", delayInMinutes: delayInMinutes.value}, function(response) {});
+        chrome.extension.sendMessage({action: "delay", delayInMinutes: delayInMinutes.value}, function (response) {
+        });
     }
 
 }, false);
@@ -55,7 +56,7 @@ buttonStart.addEventListener("click", function () {
     });
 }, false);
 
-smaugGet(["clothes"], function (a) {
+smaugGet(["clothes", "statistics"], function (a) {
     document.getElementById("combatClothes").value = a.clothes.combat;
     document.getElementById("travelClothes").value = a.clothes.travel;
     document.getElementById("beverage1").value = a.clothes.beverage1;
@@ -68,6 +69,44 @@ smaugGet(["clothes"], function (a) {
     if (a.clothes.reload == true) {
         document.getElementById("reload").checked = true;
     }
+
+    document.getElementById("_today-gold").innerHTML = a.statistics.daily[smaugDateFormat()][locale.goldId];
+    if (a.statistics.daily[smaugDateFormatYesterday()]) {
+        document.getElementById("_yesterday-gold").innerHTML = a.statistics.daily[smaugDateFormatYesterday(1)][locale.goldId];
+    } else {
+        document.getElementById("_yesterday-gold").innerHTML = "0";
+    }
+
+    console.log(a.statistics.daily);
+
+    var iterateStat = 0;
+    var totalGold = 0;
+    var totalMobs = 0;
+    for (var stat in a.statistics.daily) {
+        if (a.statistics.daily.hasOwnProperty(stat)) {
+            console.log(a.statistics.daily[stat]);
+            if (a.statistics.daily[stat][locale.goldId]) {
+                totalGold += a.statistics.daily[stat][locale.goldId];
+            }
+            if (a.statistics.daily[stat]["creature"]){
+                totalMobs += a.statistics.daily[stat]["creature"];
+            }
+        }
+        iterateStat++;
+    }
+    console.log(totalGold);
+    console.log(iterateStat);
+
+    document.getElementById("_total_mobs").innerHTML = totalMobs;
+    document.getElementById("_total-days").innerHTML = iterateStat;
+    document.getElementById("_total_gold").innerHTML = totalGold;
+
+    //_total_mobs
+    //_total-days
+    //_total_gold
+
+    //console.log(smaugDateFormatYesterday());
+    //console.log(a.statistics.daily[smaugDateFormatYesterday()]);
 
 });
 

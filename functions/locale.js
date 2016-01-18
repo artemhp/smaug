@@ -9,6 +9,7 @@ var locale = {
     pick: '[title=Подобрать]',
     unlock: '[title=Отпереть]',
     goldSelector: '#pickupID0',
+    goldId: 'pickupID0',
     noCombatFrame: 'no_combat',
     coordinatesText: 'title',
     mainFrame: 'loc',

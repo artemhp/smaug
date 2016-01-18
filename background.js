@@ -4,6 +4,12 @@ function smaugSet(obj, result) {
     });
 }
 
+function smaugGet (obj, result) {
+    chrome.storage.local.get(obj, function (a) {
+        result(a);
+    });
+}
+
 var sendMessage = function (message, sendResponse) {
     chrome.tabs.query({url: "http://fantasyland.ru/main.php"}, function (tabs) {
         if (sendResponse) {
@@ -14,17 +20,22 @@ var sendMessage = function (message, sendResponse) {
     });
 };
 
-chrome.alarms.create("refreshForSecure", {periodInMinutes: 6});
-chrome.alarms.create("drinkBeverage", {periodInMinutes: 32});
+chrome.alarms.create("refreshForSecure", {periodInMinutes: 1});
+chrome.alarms.create("drinkBeverage", {periodInMinutes: 1});
 chrome.alarms.create("useHealth", {periodInMinutes: 5});
-chrome.alarms.create("shuffleArrows", {periodInMinutes: 20});
+chrome.alarms.create("shuffleArrows", {periodInMinutes: 60});
 
 //delayInMinutes
 
 chrome.alarms.onAlarm.addListener(function (alarm) {
 
     if (alarm.name == "refreshForSecure") {
-        sendMessage({action: "reload"}, function () {
+        chrome.tabs.query({url: "http://fantasyland.ru/main.php"}, function (tabs) {
+            smaugGet(['action', 'clothes'], function(act) {
+                if (act.action == "go" && act.clothes.reload == true) {
+                    chrome.tabs.reload(tabs[0].id);
+                }
+            });
         });
     } else if (alarm.name == "drinkBeverage") {
         sendMessage({action: "drinkBeverage"}, function () {

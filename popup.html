@@ -1,9 +1,16 @@
+<div><strong>Statistics Gold:</strong></div>
+<div style="margin-bottom: 1em;">
+    <div class="today-gold">Today Gold: <strong><span id="_today-gold"></span></strong></div>
+    <div class="today-gold">Yesterday Gold: <strong><span id="_yesterday-gold"></span></strong></div>
+</div>
+<div style="margin-bottom:1em; font-style: italic;">
+    This Smaug was active for <span id="_total-days"></span> days and found <span id="_total_gold"></span> gold coins. Attacked <span id="_total_mobs"></span> creatures.
+</div>
 <div class="actionBar">
     <button id="buttonStop">Stop</button>
     <button id="buttonGo">Start</button>
     <button id="reset">Reset</button>
 </div>
-
 
 <table class="wearRoom">
     <tr>
@@ -116,6 +123,8 @@
     }
 </style>
 
+<script type="text/javascript" src="functions/helpers.js"></script>
+<script type="text/javascript" src="functions/locale.js"></script>
 <script type="text/javascript" src="popup/variables.js"></script>
 <script type="text/javascript" src="popup/methods.js"></script>
 <script type="text/javascript" src="popup.js"></script>

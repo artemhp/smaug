@@ -12,3 +12,10 @@ function smaugDateFormat() {
     var formatDate = (getDate.getMonth()+1) + "/" + getDate.getDate() + "/" + getDate.getFullYear();
     return (new Date(formatDate).getTime());
 }
+
+function smaugDateFormatYesterday(param) {
+    var getDate = new Date();
+    getDate.setDate(getDate.getDate()-param);
+    var formatDate = (getDate.getMonth()+1) + "/" + getDate.getDate() + "/" + getDate.getFullYear();
+    return (new Date(formatDate).getTime());
+}
