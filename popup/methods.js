@@ -6,7 +6,7 @@ function sendMessage (message, sendResponse) {
             chrome.tabs.sendMessage(tabs[0].id, message);
         }
     });
-};
+}
 
 function sendMessageToEvent (el, message, callback) {
     el.addEventListener("click", function () {
@@ -14,7 +14,7 @@ function sendMessageToEvent (el, message, callback) {
             callback(response);
         });
     }, false);
-};
+}
 
 function smaugGet (obj, result) {
     chrome.storage.local.get(obj, function (a) {
@@ -69,7 +69,6 @@ function checkInitDaily (type, count, callback) {
                 callback();
             });
         } else {
-            console.log(a.statistics["daily"][dateFormat][type]);
             if (!a.statistics["daily"][dateFormat][type]) {
                 a.statistics["daily"][dateFormat][type] = count;
                 smaugSet({

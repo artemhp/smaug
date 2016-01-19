@@ -81,6 +81,12 @@ function analyseArrow(param) {
         obj.coordinateRate = 5000000000;
     }
 
+        var testTrap = storedCoordinatesTrapArray.indexOf(obj.nextCoordinates);
+        if (testTrap >= 0) {
+            obj.coordinateRate = 1000000;
+        }
+
+
     return obj;
 }
 
@@ -106,7 +112,6 @@ function searchMob() {
                     smaugSet({
                         'travelClothesEnable': false
                     }, function (){
-                        console.log(mob[0]);
                         checkInitDaily("creature", 1, function () {
                             mob[0].click();
                         });
@@ -180,6 +185,10 @@ function searchTreasure() {
 }
 
 function speed() {
-    var parseSpeed = getSpeedNode(getTravelFrame()).innerHTML.match(/(\d+)/gi);
-    return parseInt(parseSpeed[0]);
+    if (getSpeedNode(getTravelFrame())){
+        var parseSpeed = getSpeedNode(getTravelFrame()).innerHTML.match(/(\d+)/gi);
+        return parseInt(parseSpeed[0]);
+    } else {
+        return 0;
+    }
 }

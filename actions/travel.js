@@ -7,6 +7,30 @@ function travelSolution(chosenArrow) {
         var moveSearchMob = searchMob();
         var moveSearchTreasure = searchTreasure();
 
+        function detectTrap(){
+            var getSrc = getImageOfLocation(getTravelFrame());
+            if(getSrc.search("trap") >= 0){
+                //console.log("trap");
+                //console.log(currentCoordinate);
+                smaugGet(['storedCoordinatesTraps'], function(a){
+                    var currentArray = a.storedCoordinatesTraps;
+                    var testTrap = currentArray.indexOf(currentCoordinate.local);
+                    console.log(testTrap);
+                    if (testTrap < 0) {
+                        currentArray.push(currentCoordinate.local);
+                        smaugSet({
+                            'storedCoordinatesTraps': currentArray
+                        }, function(){
+                            //console.log("Traps has been added");
+                        });
+                    }
+                });
+
+            }
+        }
+
+        detectTrap();
+
         if (moveSearchPerson) {
             chosenArrow.click();
             return true;
@@ -45,7 +69,7 @@ function actionOnTravelFrame() {
     if (speed() > 30) {
 
         // Get Coordinates
-        var currentCoordinate = getCoordinates();
+        currentCoordinate = getCoordinates();
         // Get Available Arrows
         var availableArrows = getAvailableArrows(analyseArrow);
         // Choose Coordinates

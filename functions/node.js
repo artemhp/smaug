@@ -18,6 +18,10 @@ var getCharNode = function(travelFrame){
     return travelFrame.document.getElementById("plrs").querySelectorAll(locale.player);
 };
 
+var getImageOfLocation = function(travelFrame){
+    return travelFrame.document.querySelector(".cssLocImage").src;
+};
+
 var getItemNode = function(travelFrame){
     return travelFrame.document.getElementById("picks");
 };

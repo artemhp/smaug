@@ -44,7 +44,8 @@ buttonUpdate.addEventListener("click", function () {
 
 // When Click Reset Button
 buttonReset.addEventListener("click", function () {
-    chrome.storage.local.remove("statistics");
+    chrome.storage.local.remove("coordinates");
+    chrome.storage.local.remove("storedCoordinatesTraps");
 }, false);
 
 // When Click Reset Button
@@ -71,7 +72,7 @@ smaugGet(["clothes", "statistics"], function (a) {
     }
 
     document.getElementById("_today-gold").innerHTML = a.statistics.daily[smaugDateFormat()][locale.goldId];
-    if (a.statistics.daily[smaugDateFormatYesterday()]) {
+    if (a.statistics.daily[smaugDateFormatYesterday(1)]) {
         document.getElementById("_yesterday-gold").innerHTML = a.statistics.daily[smaugDateFormatYesterday(1)][locale.goldId];
     } else {
         document.getElementById("_yesterday-gold").innerHTML = "0";
@@ -84,7 +85,6 @@ smaugGet(["clothes", "statistics"], function (a) {
     var totalMobs = 0;
     for (var stat in a.statistics.daily) {
         if (a.statistics.daily.hasOwnProperty(stat)) {
-            console.log(a.statistics.daily[stat]);
             if (a.statistics.daily[stat][locale.goldId]) {
                 totalGold += a.statistics.daily[stat][locale.goldId];
             }

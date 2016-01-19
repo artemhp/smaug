@@ -1,6 +1,7 @@
 var storedCoordinates = [];
 var currentCoordinate;
 var storedCoordinatesArray = [];
+var storedCoordinatesTrapArray = [];
 
 var arrowsArray = [
     locale.coordinates.north,
@@ -9,14 +10,14 @@ var arrowsArray = [
     locale.coordinates.west
 ];
 
-//shuffle(arrowsArray);
-
 smaugGet(null, function(a){
     console.log(a);
 });
 
+// If you need to remove statistics.
 //chrome.storage.local.remove("statistics");
-smaugGet('statistics', function(a){
+
+smaugGet(['statistics', 'storedCoordinatesTraps', 'coordinates'], function(a){
     if (!a.statistics){
         var statisticsObj = {
             'storedCoordinates': [],
@@ -27,6 +28,20 @@ smaugGet('statistics', function(a){
             'statistics': statisticsObj
         }, function(){
             console.log("Statistics has been created");
+        });
+    }
+    if (!a.storedCoordinatesTraps) {
+        smaugSet({
+            'storedCoordinatesTraps': []
+        }, function(){
+            console.log("Traps array has been created");
+        });
+    }
+    if (!a.coordinates) {
+        smaugSet({
+            'coordinates': []
+        }, function(){
+            console.log("Coordinates array has been created");
         });
     }
 });
@@ -62,7 +77,7 @@ smaugGet('clothes', function(a){
 });
 
 smaugGet('exit', function(a){
-    if (!a.exit){
+    if (!a.hasOwnProperty("exit")){
         smaugSet({
             'exit': false
         }, function(){
@@ -70,3 +85,9 @@ smaugGet('exit', function(a){
         });
     }
 });
+//
+//window.onerror = function(message, url, line) {
+//    console.log(message);
+//    console.log(url);
+//    console.log(line);
+//};
