@@ -72,16 +72,22 @@ smaugGet(["clothes", "statistics"], function (a) {
     }
 
     document.getElementById("_today-gold").innerHTML = a.statistics.daily[smaugDateFormat()][locale.goldId];
+    document.getElementById("_today_combat").innerHTML = a.statistics.daily[smaugDateFormat()]["creature"];
     var getTodayExp = parseInt(a.statistics.daily[smaugDateFormat()]["experience"]);
+
+
 
     if (a.statistics.daily[smaugDateFormatYesterday(1)]) {
         document.getElementById("_yesterday-gold").innerHTML = a.statistics.daily[smaugDateFormatYesterday(1)][locale.goldId];
         var getYesterdayExp = parseInt(a.statistics.daily[smaugDateFormatYesterday(1)]["experience"]);
+        var getYesterdayCombats = parseInt(a.statistics.daily[smaugDateFormatYesterday(1)]["creature"]);
         console.log("Exp:");
         document.getElementById("_total_exp").innerHTML = (getTodayExp - getYesterdayExp);
+        document.getElementById("_yesterday_combat").innerHTML = getYesterdayCombats;
     } else {
         document.getElementById("_yesterday-gold").innerHTML = "0";
         document.getElementById("_total_exp").innerHTML = "0";
+        document.getElementById("_yesterday_combat").innerHTML = "0"
     }
 
     console.log(a.statistics.daily);

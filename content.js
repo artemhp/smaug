@@ -68,7 +68,9 @@ setTimeout(function () {
                         }
 
                         if (getExitLink(getCombatField())) {
-                            getExitLink(getCombatField()).click();
+                            checkInitDaily("creature", 1, function () {
+                                getExitLink(getCombatField()).click();
+                            });
                         }
                     }
                 });

@@ -112,9 +112,7 @@ function searchMob() {
                     smaugSet({
                         'travelClothesEnable': false
                     }, function (){
-                        checkInitDaily("creature", 1, function () {
-                            mob[0].click();
-                        });
+                        mob[0].click();
                     });
                 }
             });
