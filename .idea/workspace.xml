@@ -3,13 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8e5d1aaa-2e2f-4ffe-b4b3-aedf44e34f06" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/functions/actions.js" afterPath="$PROJECT_DIR$/functions/actions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/content.js" afterPath="$PROJECT_DIR$/content.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/init.js" afterPath="$PROJECT_DIR$/init.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/popup/methods.js" afterPath="$PROJECT_DIR$/popup/methods.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/functions/node.js" afterPath="$PROJECT_DIR$/functions/node.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/popup.html" afterPath="$PROJECT_DIR$/popup.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/popup.js" afterPath="$PROJECT_DIR$/popup.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/actions/travel.js" afterPath="$PROJECT_DIR$/actions/travel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="smaug.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,7 +25,7 @@
     <favorites_list name="smaug" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.52881944">
+    <splitter split-orientation="horizontal" split-proportion="0.73159724">
       <split-first>
         <leaf>
           <file leaf-file-name="content.js" pinned="false" current-in-tab="false">
@@ -45,8 +41,8 @@
           <file leaf-file-name="travel.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/actions/travel.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-8.105263">
-                  <caret line="14" column="61" selection-start-line="14" selection-start-column="61" selection-end-line="14" selection-end-column="61" />
+                <state vertical-scroll-proportion="-9.842105">
+                  <caret line="17" column="31" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
                   <folding />
                 </state>
               </provider>
@@ -62,21 +58,21 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="init.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="init.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/init.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.61134905">
-                  <caret line="87" column="0" selection-start-line="87" selection-start-column="2" selection-end-line="92" selection-end-column="4" />
+                <state vertical-scroll-proportion="-46.894737">
+                  <caret line="87" column="2" selection-start-line="87" selection-start-column="2" selection-end-line="87" selection-end-column="2" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="popup.html" pinned="false" current-in-tab="false">
+          <file leaf-file-name="popup.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/popup.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-12.571428">
-                  <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
+                <state vertical-scroll-proportion="0.13909379">
+                  <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
                   <folding>
                     <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
@@ -88,8 +84,8 @@
           <file leaf-file-name="popup.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/popup.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-4.0526314">
-                  <caret line="46" column="38" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
+                <state vertical-scroll-proportion="-8.859649">
+                  <caret line="80" column="90" selection-start-line="80" selection-start-column="90" selection-end-line="80" selection-end-column="90" />
                   <folding />
                 </state>
               </provider>
@@ -109,11 +105,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="actions.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="actions.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/functions/actions.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="113" column="35" selection-start-line="113" selection-start-column="35" selection-end-line="113" selection-end-column="35" />
+                <state vertical-scroll-proportion="0.76690215">
+                  <caret line="192" column="21" selection-start-line="192" selection-start-column="21" selection-end-line="192" selection-end-column="21" />
                   <folding />
                 </state>
               </provider>
@@ -129,10 +125,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="methods.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="methods.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/popup/methods.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.116702355">
+                <state vertical-scroll-proportion="-1.9122807">
                   <caret line="61" column="48" selection-start-line="61" selection-start-column="48" selection-end-line="61" selection-end-column="48" />
                   <folding />
                 </state>
@@ -183,15 +179,15 @@
         <option value="$PROJECT_DIR$/popup/variables.js" />
         <option value="$PROJECT_DIR$/functions/locale.js" />
         <option value="$PROJECT_DIR$/functions/helpers.js" />
-        <option value="$PROJECT_DIR$/popup.html" />
         <option value="$PROJECT_DIR$/background.js" />
         <option value="$PROJECT_DIR$/functions/node.js" />
         <option value="$PROJECT_DIR$/popup/methods.js" />
-        <option value="$PROJECT_DIR$/popup.js" />
         <option value="$PROJECT_DIR$/content.js" />
-        <option value="$PROJECT_DIR$/functions/actions.js" />
-        <option value="$PROJECT_DIR$/actions/travel.js" />
         <option value="$PROJECT_DIR$/init.js" />
+        <option value="$PROJECT_DIR$/actions/travel.js" />
+        <option value="$PROJECT_DIR$/functions/actions.js" />
+        <option value="$PROJECT_DIR$/popup.js" />
+        <option value="$PROJECT_DIR$/popup.html" />
       </list>
     </option>
   </component>
@@ -685,17 +681,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/popup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.571428">
-          <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/background.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="11.578947">
@@ -728,14 +713,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/popup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.0526314">
-          <caret line="46" column="38" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/combat.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -760,35 +737,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/functions/actions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="113" column="35" selection-start-line="113" selection-start-column="35" selection-end-line="113" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/popup/methods.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.116702355">
+        <state vertical-scroll-proportion="-1.9122807">
           <caret line="61" column="48" selection-start-line="61" selection-start-column="48" selection-end-line="61" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/actions/travel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.105263">
-          <caret line="14" column="61" selection-start-line="14" selection-start-column="61" selection-end-line="14" selection-end-column="61" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/init.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.61134905">
-          <caret line="87" column="0" selection-start-line="87" selection-start-column="2" selection-end-line="92" selection-end-column="4" />
+        <state vertical-scroll-proportion="-46.894737">
+          <caret line="87" column="2" selection-start-line="87" selection-start-column="2" selection-end-line="87" selection-end-column="2" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/functions/actions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.76690215">
+          <caret line="192" column="21" selection-start-line="192" selection-start-column="21" selection-end-line="192" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/popup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.859649">
+          <caret line="80" column="90" selection-start-line="80" selection-start-column="90" selection-end-line="80" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/actions/travel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.842105">
+          <caret line="17" column="31" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/popup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13909379">
+          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

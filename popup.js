@@ -72,10 +72,16 @@ smaugGet(["clothes", "statistics"], function (a) {
     }
 
     document.getElementById("_today-gold").innerHTML = a.statistics.daily[smaugDateFormat()][locale.goldId];
+    var getTodayExp = parseInt(a.statistics.daily[smaugDateFormat()]["experience"]);
+
     if (a.statistics.daily[smaugDateFormatYesterday(1)]) {
         document.getElementById("_yesterday-gold").innerHTML = a.statistics.daily[smaugDateFormatYesterday(1)][locale.goldId];
+        var getYesterdayExp = parseInt(a.statistics.daily[smaugDateFormatYesterday(1)]["experience"]);
+        console.log("Exp:");
+        document.getElementById("_total_exp").innerHTML = (getTodayExp - getYesterdayExp);
     } else {
         document.getElementById("_yesterday-gold").innerHTML = "0";
+        document.getElementById("_total_exp").innerHTML = "0";
     }
 
     console.log(a.statistics.daily);
@@ -101,12 +107,7 @@ smaugGet(["clothes", "statistics"], function (a) {
     document.getElementById("_total-days").innerHTML = iterateStat;
     document.getElementById("_total_gold").innerHTML = totalGold;
 
-    //_total_mobs
-    //_total-days
-    //_total_gold
 
-    //console.log(smaugDateFormatYesterday());
-    //console.log(a.statistics.daily[smaugDateFormatYesterday()]);
 
 });
 

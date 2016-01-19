@@ -187,7 +187,11 @@ function searchTreasure() {
 function speed() {
     if (getSpeedNode(getTravelFrame())){
         var parseSpeed = getSpeedNode(getTravelFrame()).innerHTML.match(/(\d+)/gi);
-        return parseInt(parseSpeed[0]);
+        if (parseSpeed) {
+            return parseInt(parseSpeed[0]);
+        } else {
+            return 0;
+        }
     } else {
         return 0;
     }

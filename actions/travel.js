@@ -15,7 +15,6 @@ function travelSolution(chosenArrow) {
                 smaugGet(['storedCoordinatesTraps'], function(a){
                     var currentArray = a.storedCoordinatesTraps;
                     var testTrap = currentArray.indexOf(currentCoordinate.local);
-                    console.log(testTrap);
                     if (testTrap < 0) {
                         currentArray.push(currentCoordinate.local);
                         smaugSet({
