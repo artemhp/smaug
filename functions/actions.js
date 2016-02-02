@@ -112,6 +112,7 @@ function searchMob() {
                     smaugSet({
                         'travelClothesEnable': false
                     }, function (){
+                        console.log("attack");
                         mob[0].click();
                     });
                 }
@@ -147,7 +148,8 @@ function chooseCoordinates(getArrows) {
 }
 
 function searchPersons() {
-    return getCharNode(getTravelFrame()).length > 1;
+    console.log(getCharNode(getTravelFrame()).length == 1);
+    return getCharNode(getTravelFrame()).length == 1;
 }
 
 function searchTreasure() {
@@ -192,5 +194,26 @@ function speed() {
         }
     } else {
         return 0;
+    }
+}
+
+function detectTrap(){
+    var getSrc = getImageOfLocation(getTravelFrame());
+    if(getSrc.search("trap") >= 0){
+        //console.log("trap");
+        //console.log(currentCoordinate);
+        smaugGet(['storedCoordinatesTraps'], function(a){
+            var currentArray = a.storedCoordinatesTraps;
+            var testTrap = currentArray.indexOf(currentCoordinate.local);
+            if (testTrap < 0) {
+                currentArray.push(currentCoordinate.local);
+                smaugSet({
+                    'storedCoordinatesTraps': currentArray
+                }, function(){
+                    //console.log("Traps has been added");
+                });
+            }
+        });
+
     }
 }

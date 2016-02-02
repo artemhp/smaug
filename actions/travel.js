@@ -7,55 +7,34 @@ function travelSolution(chosenArrow) {
         var moveSearchMob = searchMob();
         var moveSearchTreasure = searchTreasure();
 
-        function detectTrap(){
-            var getSrc = getImageOfLocation(getTravelFrame());
-            if(getSrc.search("trap") >= 0){
-                //console.log("trap");
-                //console.log(currentCoordinate);
-                smaugGet(['storedCoordinatesTraps'], function(a){
-                    var currentArray = a.storedCoordinatesTraps;
-                    var testTrap = currentArray.indexOf(currentCoordinate.local);
-                    if (testTrap < 0) {
-                        currentArray.push(currentCoordinate.local);
-                        smaugSet({
-                            'storedCoordinatesTraps': currentArray
-                        }, function(){
-                            //console.log("Traps has been added");
-                        });
-                    }
-                });
-
-            }
-        }
-
         detectTrap();
 
-        if (moveSearchPerson) {
+        if (!moveSearchPerson) {
             chosenArrow.click();
             return true;
-        }
-
-        // Detect Treasure
-        if (moveSearchTreasure) {
-            if (moveSearchTreasure.type == "locked") {
-                checkInitDaily(moveSearchTreasure.type, moveSearchTreasure.count, function(){
-                    moveSearchTreasure.item.click();
-                });
-            } else {
-                checkInitDaily(moveSearchTreasure.type, moveSearchTreasure.count, function(){
-                    moveSearchTreasure.item.click();
-                });
+        } else {
+            // Detect Treasure
+            if (moveSearchTreasure) {
+                if (moveSearchTreasure.type == "locked") {
+                    checkInitDaily(moveSearchTreasure.type, moveSearchTreasure.count, function(){
+                        moveSearchTreasure.item.click();
+                    });
+                } else {
+                    checkInitDaily(moveSearchTreasure.type, moveSearchTreasure.count, function(){
+                        moveSearchTreasure.item.click();
+                    });
+                }
+                return true;
             }
-            return false;
-        }
 
-        if (moveSearchMob) {
-            return false;
-        }
+            if (moveSearchMob) {
+                return true;
+            }
 
-        if (getHealthBarWidth() == "100%") {
-            chosenArrow.click();
-            return true;
+            if (getHealthBarWidth() == "100%") {
+                chosenArrow.click();
+                return true;
+            }
         }
 
     } else {
