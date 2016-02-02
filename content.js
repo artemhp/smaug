@@ -19,7 +19,9 @@ setTimeout(function () {
 
                             // Try to avoid this
                             storedCoordinatesArray = storedCoordinates.map(function (el) {
-                                return el.local;
+                                if (el && el.local) {
+                                    return el.local;
+                                }
                             });
 
                             storedCoordinatesTrapArray = a.storedCoordinatesTraps;

@@ -69,8 +69,8 @@ chrome.runtime.onMessage.addListener(
             chrome.browserAction.setIcon({path: 'icon.png'});
             chrome.browserAction.setBadgeText({text: ""});
         } else if (request.action === "delay") {
-            chrome.alarms.create("initDelay", {delayInMinutes: parseFloat(request.delayInMinutes) * 60});
-            console.log("alarm created" + (parseFloat(request.delayInMinutes) * 60));
+            chrome.alarms.create("initDelay", {delayInMinutes: parseFloat(request.delayInMinutes) * 1});
+            console.log("alarm created" + (parseFloat(request.delayInMinutes) * 1));
         } else if (request.action === "clearAlarm") {
             chrome.alarms.clear("initDelay");
             sendResponse({success: true});

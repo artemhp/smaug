@@ -59,7 +59,9 @@ function travelSolution(chosenArrow) {
         }
 
     } else {
-        getHealthTab().click();
+        if (getHealthTab()){
+            getHealthTab().click();
+        }
         return false;
     }
 }
