@@ -54,7 +54,7 @@ var getHealthNode = function(combatFrame){
 
 var getExpNode = function() {
     return window.frames[locale.mainFrame].frames[locale.showInfoFrame].document.querySelector(locale.expLine);
-}
+};
 
 var getCombatField = function() {
     return window.frames[locale.mainFrame].frames[locale.combatFrame];
