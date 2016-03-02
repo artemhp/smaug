@@ -113,7 +113,10 @@ function searchMob() {
                         'travelClothesEnable': false
                     }, function (){
                         console.log("attack");
-                        mob[0].click();
+                        console.log(searchPersons());
+                        if (searchPersons()) {
+                            mob[0].click();
+                        }
                     });
                 }
             });

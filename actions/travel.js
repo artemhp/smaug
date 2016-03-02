@@ -9,7 +9,7 @@ function travelSolution(chosenArrow) {
 
         detectTrap();
 
-        if (!moveSearchPerson) {
+        if (!searchPersons()) {
             chosenArrow.click();
             return true;
         } else {
@@ -17,11 +17,15 @@ function travelSolution(chosenArrow) {
             if (moveSearchTreasure) {
                 if (moveSearchTreasure.type == "locked") {
                     checkInitDaily(moveSearchTreasure.type, moveSearchTreasure.count, function(){
-                        moveSearchTreasure.item.click();
+                        if (searchPersons()) {
+                            moveSearchTreasure.item.click();
+                        }
                     });
                 } else {
                     checkInitDaily(moveSearchTreasure.type, moveSearchTreasure.count, function(){
-                        moveSearchTreasure.item.click();
+                        if (searchPersons()) {
+                            moveSearchTreasure.item.click();
+                        }
                     });
                 }
                 return true;
