@@ -107,19 +107,23 @@ function searchMob() {
     if (mob.length > 0 && getHealthBarWidth() == "100%") {
 
         smaugGet('clothes', function (cloth) {
-            smaugSendRequest(locale.wearLink + cloth.clothes.combat, function (request) {
-                if (request.status === 200) {
-                    smaugSet({
-                        'travelClothesEnable': false
-                    }, function (){
-                        console.log("attack");
-                        console.log(searchPersons());
-                        if (searchPersons()) {
-                            mob[0].click();
-                        }
-                    });
+            if (cloth.clothes.combat){
+                smaugSendRequest(locale.wearLink + cloth.clothes.combat, function (request) {
+                    if (request.status === 200) {
+                        smaugSet({
+                            'travelClothesEnable': false
+                        }, function (){
+                            if (searchPersons()) {
+                                mob[0].click();
+                            }
+                        });
+                    }
+                });
+            } else {
+                if (searchPersons()) {
+                    mob[0].click();
                 }
-            });
+            }
         });
 
         return true;
