@@ -2,7 +2,27 @@ setTimeout(function () {
     (function loop() {
         var rand = Math.random() * (2000 - 1000) + 1000;
         setTimeout(function () {
-            if (getTravelFrame()) {
+
+            if (getImageOfLocation(getTravelFrame()) == "http://fantasyland.ru/images/places/Global/arena.jpg") {
+
+                smaugGet('statistics', function (a) {
+                    var dateFormat = smaugDateFormat();
+                    if ( getExpNode()) {
+                        a.statistics["daily"][dateFormat]["experience"] = getExpNode().innerHTML.match(/\d+$/)[0];
+                        smaugSet({
+                            'statistics': a.statistics
+                        }, function () {});
+                    }
+                });
+
+                if (getInputCaptcha(getTravelFrame())) {
+                    chrome.runtime.sendMessage({action: "captcha"}, function(response) {
+                        getInputCaptcha(getTravelFrame()).focus()
+                    });
+                }
+            }
+
+            if (getTravelFrame() && getImageOfLocation(getTravelFrame()) !== "http://fantasyland.ru/images/places/Global/arena.jpg") {
 
                 //chrome.storage.local.clear();
                 chrome.runtime.sendMessage({action: "travel"});
@@ -40,7 +60,6 @@ setTimeout(function () {
         var rand = Math.random() * (18000 - 10000) + 10000;
         setTimeout(function () {
             if (getArmyFrame()) {
-
                 smaugGet('action', function (act) {
                     if (act.action == "go") {
                         var randArmy = Math.floor(Math.random() * 3);
@@ -64,7 +83,9 @@ setTimeout(function () {
 
                             if (healthCheck < 35) {
                                 smaugGet(['clothes'], function (act) {
-                                    window.frames[locale.mainFrame].frames[locale.armyFrame].document.querySelectorAll("[src='" + act.clothes.svitokHealthPic + "']")[0].click()
+                                    if (window.frames[locale.mainFrame].frames[locale.armyFrame].document.querySelectorAll("[src='" + act.clothes.svitokHealthPic + "']")[0]) {
+                                        window.frames[locale.mainFrame].frames[locale.armyFrame].document.querySelectorAll("[src='" + act.clothes.svitokHealthPic + "']")[0].click()
+                                    }
                                 });
                             }
                         }
@@ -86,7 +107,7 @@ setTimeout(function () {
 
 
 setInterval(function () {
-    if (getTravelFrame()) {
+    if (getTravelFrame() && getImageOfLocation(getTravelFrame()) !== "http://fantasyland.ru/images/places/Global/arena.jpg") {
         smaugGet(['action', 'clothes', 'travelClothesEnable'], function (act) {
             if (act.action == "go" && !act.travelClothesEnable) {
                 smaugSendRequest(locale.wearLink + act.clothes.travel, function () {
@@ -114,7 +135,7 @@ chrome.runtime.onMessage.addListener(
 
         } else if (request.action === "drinkBeverage") {
 
-            if (getTravelFrame()) {
+            if (getTravelFrame()  && getImageOfLocation(getTravelFrame()) !== "http://fantasyland.ru/images/places/Global/arena.jpg") {
                 smaugGet(['clothes', 'action'], function (act) {
                     if (act.action == "go" && getTravelFrame()) {
                         if (act.clothes.beverage1) {
@@ -173,7 +194,7 @@ chrome.runtime.onMessage.addListener(
                 console.log("If not in combat - Quit");
             });
         } else if (request.action === "shuffleArrows") {
-            if (getTravelFrame()) {
+            if (getTravelFrame() && getImageOfLocation(getTravelFrame()) !== "http://fantasyland.ru/images/places/Global/arena.jpg") {
                 shuffle(arrowsArray);
                 storedCoordinates = [];
                 chrome.storage.local.remove("coordinates");

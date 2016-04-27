@@ -26,6 +26,10 @@ var getItemNode = function(travelFrame){
     return travelFrame.document.getElementById("picks");
 };
 
+var getInputCaptcha = function(travelFrame){
+    return travelFrame.document.getElementById("value");
+};
+
 var getSpeedNode = function(travelFrame) {
     return travelFrame.document.getElementById("hru");
 };
@@ -53,7 +57,12 @@ var getHealthNode = function(combatFrame){
 };
 
 var getExpNode = function() {
-    return window.frames[locale.mainFrame].frames[locale.showInfoFrame].document.querySelector(locale.expLine);
+    if (window.frames[locale.mainFrame].frames[locale.showInfoFrame]) {
+        return window.frames[locale.mainFrame].frames[locale.showInfoFrame].document.querySelector(locale.expLine);
+    } else {
+        return false;
+    }
+
 };
 
 var getCombatField = function() {

@@ -62,7 +62,12 @@ function checkInitDaily (type, count, callback) {
         if (!a.statistics["daily"][dateFormat]){
             a.statistics["daily"][dateFormat] = {};
             a.statistics["daily"][dateFormat][type] = count;
-            a.statistics["daily"][dateFormat]["experience"] = getExpNode().innerHTML.match(/\d+$/)[0];
+            if ( getExpNode()) {
+                a.statistics["daily"][dateFormat]["experience"] = getExpNode().innerHTML.match(/\d+$/)[0];
+            } else {
+                a.statistics["daily"][dateFormat]["experience"] = 0;
+            }
+
             smaugSet({
                 'statistics': a.statistics
             }, function () {
