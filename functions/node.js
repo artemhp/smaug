@@ -19,7 +19,12 @@ var getCharNode = function(travelFrame){
 };
 
 var getImageOfLocation = function(travelFrame){
-    return travelFrame.document.querySelector(".cssLocImage").src;
+    if (travelFrame && travelFrame.document.querySelector(".cssLocImage")) {
+        return travelFrame.document.querySelector(".cssLocImage").src;
+    } else {
+        return false;
+    }
+
 };
 
 var getItemNode = function(travelFrame){

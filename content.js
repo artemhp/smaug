@@ -81,7 +81,7 @@ setTimeout(function () {
                             var healthCheck = parseInt(getHealthNode(getArmyFrame()).getAttribute("style").match(/\d+/)[0]);
                             chrome.runtime.sendMessage({action: "combat", health: healthCheck});
 
-                            if (healthCheck < 35) {
+                            if (healthCheck < 15) {
                                 smaugGet(['clothes'], function (act) {
                                     if (window.frames[locale.mainFrame].frames[locale.armyFrame].document.querySelectorAll("[src='" + act.clothes.svitokHealthPic + "']")[0]) {
                                         window.frames[locale.mainFrame].frames[locale.armyFrame].document.querySelectorAll("[src='" + act.clothes.svitokHealthPic + "']")[0].click()
