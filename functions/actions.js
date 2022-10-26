@@ -53,7 +53,6 @@ function analyseArrow(param) {
   // How much this coordinates repeats we can know comparing
   // coordinate with array in storage.
   //console.log(storedCoordinatesArray.length);
-  debugger;
   var nextCoordinatesRepeats =
     storedCoordinates[obj.nextCoordinates]?.coordinateRate || 0;
 
@@ -91,7 +90,6 @@ function analyseArrow(param) {
 }
 
 function saveCoordinates(coordinate, callback) {
-  debugger;
   if (storedCoordinates[coordinate.local]) {
     storedCoordinates[coordinate.local] = {
       ...coordinate,
