@@ -26,17 +26,13 @@ setTimeout(function () {
           if (act.action == "go") {
             smaugGet(["coordinates", "storedCoordinatesTraps"], function (a) {
               if (!a.coordinates) {
-                storedCoordinates = [];
+                storedCoordinates = {};
               } else {
                 storedCoordinates = a.coordinates;
               }
 
               // Try to avoid this
-              storedCoordinatesArray = storedCoordinates.map(function (el) {
-                if (el && el.local) {
-                  return el.local;
-                }
-              });
+              storedCoordinatesArray = Object.keys(storedCoordinates);
 
               storedCoordinatesTrapArray = a.storedCoordinatesTraps;
 
@@ -219,7 +215,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         "https://fantasyland.ru/images/places/Global/arena.jpg"
     ) {
       shuffle(arrowsArray);
-      storedCoordinates = [];
+      storedCoordinates = {};
       chrome.storage.local.remove("coordinates");
     }
   }

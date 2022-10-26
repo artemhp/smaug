@@ -53,10 +53,9 @@ function analyseArrow(param) {
   // How much this coordinates repeats we can know comparing
   // coordinate with array in storage.
   //console.log(storedCoordinatesArray.length);
-  var nextCoordinatesRepeats = countInArray(
-    storedCoordinatesArray,
-    obj.nextCoordinates
-  );
+  debugger;
+  var nextCoordinatesRepeats =
+    storedCoordinates[obj.nextCoordinates]?.coordinateRate || 0;
 
   //-------------------------------------------------------
   // Analyze ----------------------------------------------
@@ -76,7 +75,7 @@ function analyseArrow(param) {
   } else if (patternKey.test(elem.getAttribute("title"))) {
     // It is door
     obj.status = "door";
-    obj.coordinateRate = nextCoordinatesRepeats + 3;
+    obj.coordinateRate = nextCoordinatesRepeats + 2;
   } else {
     // it is wall and we can't go
     obj.status = "close";
@@ -92,8 +91,19 @@ function analyseArrow(param) {
 }
 
 function saveCoordinates(coordinate, callback) {
-  //console.log(coordinate.local);
-  storedCoordinates.push(coordinate);
+  debugger;
+  if (storedCoordinates[coordinate.local]) {
+    storedCoordinates[coordinate.local] = {
+      ...coordinate,
+      coordinateRate:
+        parseInt(storedCoordinates[coordinate.local].coordinateRate) + 1,
+    };
+  } else {
+    storedCoordinates[coordinate.local] = {
+      ...coordinate,
+      coordinateRate: 1,
+    };
+  }
   smaugSet(
     {
       localCoordinate: coordinate.local,
