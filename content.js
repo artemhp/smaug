@@ -4,40 +4,24 @@ setTimeout(function () {
     setTimeout(function () {
       if (
         getImageOfLocation(getTravelFrame()) ==
-        "http://fantasyland.ru/images/places/Global/arena.jpg"
+        "https://fantasyland.ru/images/places/Global/arena.jpg"
       ) {
         smaugGet("statistics", function (a) {
           var dateFormat = smaugDateFormat();
           if (getExpNode()) {
             a.statistics["daily"][dateFormat]["experience"] =
               getExpNode().innerHTML.match(/\d+$/)[0];
-            smaugSet(
-              {
-                statistics: a.statistics,
-              },
-              function () {}
-            );
+            smaugSet({ statistics: a.statistics }, function () {});
           }
         });
-
-        if (getInputCaptcha(getTravelFrame())) {
-          chrome.runtime.sendMessage(
-            { action: "captcha" },
-            function (response) {
-              getInputCaptcha(getTravelFrame()).focus();
-            }
-          );
-        }
       }
 
       if (
         getTravelFrame() &&
         getImageOfLocation(getTravelFrame()) !==
-          "http://fantasyland.ru/images/places/Global/arena.jpg"
+          "https://fantasyland.ru/images/places/Global/arena.jpg"
       ) {
-        //chrome.storage.local.clear();
         chrome.runtime.sendMessage({ action: "travel" });
-
         smaugGet("action", function (act) {
           if (act.action == "go") {
             smaugGet(["coordinates", "storedCoordinatesTraps"], function (a) {
@@ -130,29 +114,6 @@ setTimeout(function () {
       loop();
     }, rand);
   })();
-}, 5000);
-
-setInterval(function () {
-  if (
-    getTravelFrame() &&
-    getImageOfLocation(getTravelFrame()) !==
-      "http://fantasyland.ru/images/places/Global/arena.jpg"
-  ) {
-    smaugGet(["action", "clothes", "travelClothesEnable"], function (act) {
-      if (act.action == "go" && !act.travelClothesEnable) {
-        smaugSendRequest(locale.wearLink + act.clothes.travel, function () {
-          smaugSet(
-            {
-              travelClothesEnable: true,
-            },
-            function () {
-              console.log("Travel Clothes has been enabled");
-            }
-          );
-        });
-      }
-    });
-  }
 }, 1000);
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
@@ -166,41 +127,41 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if (
       getTravelFrame() &&
       getImageOfLocation(getTravelFrame()) !==
-        "http://fantasyland.ru/images/places/Global/arena.jpg"
+        "https://fantasyland.ru/images/places/Global/arena.jpg"
     ) {
       smaugGet(["clothes", "action"], function (act) {
         if (act.action == "go" && getTravelFrame()) {
           if (act.clothes.beverage1) {
-            smaugSendRequest(
-              locale.drinkLink + act.clothes.beverage1,
-              function () {
-                //console.log("Beverage has been drinked");
-              }
-            );
+            // smaugSendRequest(
+            //   locale.drinkLink + act.clothes.beverage1,
+            //   function () {
+            //     //console.log("Beverage has been drinked");
+            //   }
+            // );
           }
           if (act.clothes.beverage2) {
-            smaugSendRequest(
-              locale.drinkLink + act.clothes.beverage2,
-              function () {
-                //console.log("Beverage has been drinked");
-              }
-            );
+            // smaugSendRequest(
+            //   locale.drinkLink + act.clothes.beverage2,
+            //   function () {
+            //     //console.log("Beverage has been drinked");
+            //   }
+            // );
           }
           if (act.clothes.beverage3) {
-            smaugSendRequest(
-              locale.drinkLink + act.clothes.beverage3,
-              function () {
-                //console.log("Beverage has been drinked");
-              }
-            );
+            // smaugSendRequest(
+            //   locale.drinkLink + act.clothes.beverage3,
+            //   function () {
+            //     //console.log("Beverage has been drinked");
+            //   }
+            // );
           }
           if (act.clothes.beverage4) {
-            smaugSendRequest(
-              locale.drinkLink + act.clothes.beverage4,
-              function () {
-                //console.log("Beverage has been drinked");
-              }
-            );
+            // smaugSendRequest(
+            //   locale.drinkLink + act.clothes.beverage4,
+            //   function () {
+            //     //console.log("Beverage has been drinked");
+            //   }
+            // );
           }
         }
       });
@@ -208,38 +169,38 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   } else if (request.action === "useHealth") {
     smaugGet(["clothes", "action"], function (act) {
       if (act.action == "go" && act.clothes.svitokHealth && getTravelFrame()) {
-        smaugSendRequest(
-          locale.drinkLink + act.clothes.svitokHealth,
-          function () {}
-        );
-        smaugSendRequest(
-          locale.drinkLink + act.clothes.svitokHealth,
-          function () {}
-        );
-        smaugSendRequest(
-          locale.drinkLink + act.clothes.svitokHealth,
-          function () {}
-        );
-        smaugSendRequest(
-          locale.drinkLink + act.clothes.svitokHealth,
-          function () {}
-        );
-        smaugSendRequest(
-          locale.drinkLink + act.clothes.svitokHealth,
-          function () {}
-        );
-        smaugSendRequest(
-          locale.drinkLink + act.clothes.svitokHealth,
-          function () {}
-        );
-        smaugSendRequest(
-          locale.drinkLink + act.clothes.svitokHealth,
-          function () {}
-        );
-        smaugSendRequest(
-          locale.drinkLink + act.clothes.svitokHealth,
-          function () {}
-        );
+        // smaugSendRequest(
+        //   locale.drinkLink + act.clothes.svitokHealth,
+        //   function () {}
+        // );
+        // smaugSendRequest(
+        //   locale.drinkLink + act.clothes.svitokHealth,
+        //   function () {}
+        // );
+        // smaugSendRequest(
+        //   locale.drinkLink + act.clothes.svitokHealth,
+        //   function () {}
+        // );
+        // smaugSendRequest(
+        //   locale.drinkLink + act.clothes.svitokHealth,
+        //   function () {}
+        // );
+        // smaugSendRequest(
+        //   locale.drinkLink + act.clothes.svitokHealth,
+        //   function () {}
+        // );
+        // smaugSendRequest(
+        //   locale.drinkLink + act.clothes.svitokHealth,
+        //   function () {}
+        // );
+        // smaugSendRequest(
+        //   locale.drinkLink + act.clothes.svitokHealth,
+        //   function () {}
+        // );
+        // smaugSendRequest(
+        //   locale.drinkLink + act.clothes.svitokHealth,
+        //   function () {}
+        // );
       }
     });
   } else if (request.action === "initDelay") {
@@ -255,7 +216,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if (
       getTravelFrame() &&
       getImageOfLocation(getTravelFrame()) !==
-        "http://fantasyland.ru/images/places/Global/arena.jpg"
+        "https://fantasyland.ru/images/places/Global/arena.jpg"
     ) {
       shuffle(arrowsArray);
       storedCoordinates = [];

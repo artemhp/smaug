@@ -1,130 +1,140 @@
 <div><strong>Statistics:</strong></div>
-<div style="margin-bottom: 1em;">
-    <div class="today-gold">Today Gold: <strong><span id="_today-gold"></span></strong></div>
-    <div class="today-gold">Yesterday Gold: <strong><span id="_yesterday-gold"></span></strong></div>
-    <div class="today-gold">Combats Today: <strong><span id="_today_combat"></span></strong></div>
-    <div class="today-gold">Combats Yesterday: <strong><span id="_yesterday_combat"></span></strong></div>
-    <div>Yesterday you get <strong><span id="_total_exp"></span></strong> exp.</div>
+<div style="margin-bottom: 1em">
+  <div class="today-gold">
+    Today Gold: <strong><span id="_today-gold"></span></strong>
+  </div>
+  <div class="today-gold">
+    Yesterday Gold: <strong><span id="_yesterday-gold"></span></strong>
+  </div>
+  <div class="today-gold">
+    Combats Today: <strong><span id="_today_combat"></span></strong>
+  </div>
+  <div class="today-gold">
+    Combats Yesterday: <strong><span id="_yesterday_combat"></span></strong>
+  </div>
+  <div>
+    Yesterday you get <strong><span id="_total_exp"></span></strong> exp.
+  </div>
 </div>
-<div style="margin-bottom:1em; font-style: italic;">
-    This Smaug was active for <span id="_total-days"></span> days and found <span id="_total_gold"></span> gold coins.
-    Attacked <span id="_total_mobs"></span> creatures.
+<div style="margin-bottom: 1em; font-style: italic">
+  This Smaug was active for <span id="_total-days"></span> days and found
+  <span id="_total_gold"></span> gold coins. Attacked
+  <span id="_total_mobs"></span> creatures.
 </div>
 <div class="actionBar">
-    <button id="buttonStop">Stop</button>
-    <button id="buttonGo">Start</button>
-    <button id="reset">Reset</button>
+  <button id="buttonStop">Stop</button>
+  <button id="buttonGo">Start</button>
+  <button id="reset">Reset</button>
 </div>
 
 <table class="wearRoom">
-    <tr>
-        <td class="wearRoomTitle">Health:</td>
-        <td>
-            <input type="text" name="svitokHealth" id="svitokHealth"/>
-        </td>
-    </tr>
-    <tr>
-        <td class="wearRoomTitle">Health Pic:</td>
-        <td>
-            <input type="text" name=svitokHealthPic id="svitokHealthPic"/>
-        </td>
-    </tr>
-    <tr>
-        <td class="wearRoomTitle">Beverage 1:</td>
-        <td>
-            <input type="text" name="beverage1" id="beverage1"/>
-        </td>
-    </tr>
-    <tr>
-        <td class="wearRoomTitle">Beverage 2:</td>
-        <td>
-            <input type="text" name="beverage2" id="beverage2"/>
-        </td>
-    </tr>
-    <tr>
-        <td class="wearRoomTitle">Beverage 3:</td>
-        <td>
-            <input type="text" name="beverage3" id="beverage3"/>
-        </td>
-    </tr>
-    <tr>
-        <td class="wearRoomTitle">Beverage 4:</td>
-        <td>
-            <input type="text" name="beverage4" id="beverage4"/>
-        </td>
-    </tr>
-    <tr>
-        <td class="wearRoomTitle">Combat Clothes</td>
-        <td>
-            <input type="text" name="combatClothes" id="combatClothes"/>
-        </td>
-    </tr>
-    <tr>
-        <td class="wearRoomTitle">Travel Clothes</td>
-        <td>
-            <input type="text" name="travelClothes" id="travelClothes"/>
-        </td>
-    </tr>
-    <tr>
-        <td class="wearRoomTitle">Reload:</td>
-        <td style="text-align: left">
-            <input type="checkbox" name="reload" id="reload"/>
-        </td>
-    </tr>
-    <tr>
-        <td class="wearRoomTitle">Exit Timer:</td>
-        <td>
-            <input type="text" name="delayInMinutes" id="delayInMinutes"/>
-        </td>
-    </tr>
-    <tr>
-        <td class="wearRoomTitle"></td>
-        <td>
-            <input type="button" value="Update" name="updateWear" id="updateWear"/>
-        </td>
-    </tr>
+  <tr>
+    <td class="wearRoomTitle">Health:</td>
+    <td>
+      <input type="text" name="svitokHealth" id="svitokHealth" />
+    </td>
+  </tr>
+  <tr>
+    <td class="wearRoomTitle">Health Pic:</td>
+    <td>
+      <input type="text" name="svitokHealthPic" id="svitokHealthPic" />
+    </td>
+  </tr>
+  <tr>
+    <td class="wearRoomTitle">Beverage 1:</td>
+    <td>
+      <input type="text" name="beverage1" id="beverage1" />
+    </td>
+  </tr>
+  <tr>
+    <td class="wearRoomTitle">Beverage 2:</td>
+    <td>
+      <input type="text" name="beverage2" id="beverage2" />
+    </td>
+  </tr>
+  <tr>
+    <td class="wearRoomTitle">Beverage 3:</td>
+    <td>
+      <input type="text" name="beverage3" id="beverage3" />
+    </td>
+  </tr>
+  <tr>
+    <td class="wearRoomTitle">Beverage 4:</td>
+    <td>
+      <input type="text" name="beverage4" id="beverage4" />
+    </td>
+  </tr>
+  <tr>
+    <td class="wearRoomTitle">Combat Clothes</td>
+    <td>
+      <input type="text" name="combatClothes" id="combatClothes" />
+    </td>
+  </tr>
+  <tr>
+    <td class="wearRoomTitle">Travel Clothes</td>
+    <td>
+      <input type="text" name="travelClothes" id="travelClothes" />
+    </td>
+  </tr>
+  <tr>
+    <td class="wearRoomTitle">Reload:</td>
+    <td style="text-align: left">
+      <input type="checkbox" name="reload" id="reload" />
+    </td>
+  </tr>
+  <tr>
+    <td class="wearRoomTitle">Exit Timer:</td>
+    <td>
+      <input type="text" name="delayInMinutes" id="delayInMinutes" />
+    </td>
+  </tr>
+  <tr>
+    <td class="wearRoomTitle"></td>
+    <td>
+      <input type="button" value="Update" name="updateWear" id="updateWear" />
+    </td>
+  </tr>
 </table>
 
 <div class="links">
-    <a href="http://fantasyland.ru/cgi/combats_info.php?myself" target="_blank">
-        Show Previous Combats
-    </a>
+  <a href="https://fantasyland.ru/cgi/combats_info.php?myself" target="_blank">
+    Show Previous Combats
+  </a>
 </div>
 
 <style>
+  .wearRoom {
+    margin-top: 10px;
+  }
 
-    .wearRoom {
-        margin-top: 10px;
-    }
+  .wearRoom input {
+    width: 100%;
+    font-size: 12px;
+  }
 
-    .wearRoom input {
-        width: 100%;
-        font-size: 12px;
-    }
+  .actionBar {
+    margin-bottom: 5px;
+  }
 
-    .actionBar {
-        margin-bottom: 5px;
-    }
+  body {
+    width: 165px;
+  }
 
-    body {
-        width: 165px;
-    }
+  #reset {
+    float: right;
+  }
 
-    #reset {
-        float: right;
-    }
+  .statisticsTbl,
+  .wearRoom {
+    font-size: 12px;
+    width: 100%;
+  }
 
-    .statisticsTbl,
-    .wearRoom {
-        font-size: 12px;
-        width: 100%;
-    }
-
-    .statisticsTbl .title,
-    .wearRoomTitle {
-        font-weight: bold;
-        white-space: nowrap;
-    }
+  .statisticsTbl .title,
+  .wearRoomTitle {
+    font-weight: bold;
+    white-space: nowrap;
+  }
 </style>
 
 <script type="text/javascript" src="functions/helpers.js"></script>

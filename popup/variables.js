@@ -16,4 +16,4 @@ var buttonReset = document.getElementById("reset");
 
 var reload = document.getElementById("reload");
 
-var wearLink = "http://fantasyland.ru/cgi/set_wear.php?id=";
+var wearLink = "https://fantasyland.ru/cgi/set_wear.php?id=";
