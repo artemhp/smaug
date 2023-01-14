@@ -55,7 +55,7 @@ function travelSolution(chosenArrow) {
 }
 
 function actionOnTravelFrame() {
-  if (speed() > 8) {
+  if (speed() > 60) {
     // Get Coordinates
     currentCoordinate = getCoordinates();
     // Get Available Arrows

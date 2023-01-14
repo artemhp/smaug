@@ -32,6 +32,14 @@ var getImageOfLocation = function (travelFrame) {
   }
 };
 
+var getBugSearch = function (travelFrame) {
+  if (travelFrame && travelFrame.document.querySelector("td i a")) {
+    return travelFrame.document.querySelector("td i a");
+  } else {
+    return false;
+  }
+};
+
 var getItemNode = function (travelFrame) {
   return travelFrame.document.getElementById("picks");
 };

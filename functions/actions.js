@@ -74,7 +74,7 @@ function analyseArrow(param) {
   } else if (patternKey.test(elem.getAttribute("title"))) {
     // It is door
     obj.status = "door";
-    obj.coordinateRate = nextCoordinatesRepeats + 2;
+    obj.coordinateRate = nextCoordinatesRepeats + 6;
   } else {
     // it is wall and we can't go
     obj.status = "close";

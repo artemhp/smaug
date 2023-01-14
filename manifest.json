@@ -4,6 +4,7 @@
   "permissions": [
     "storage",
     "alarms",
+    "scripting",
     "tabs"
   ],
   "host_permissions": [
